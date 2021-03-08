@@ -34,12 +34,12 @@ public class FakePersonInfo implements PersonDao{
     }
 
     @Override
-    public int updatePersonById(UUID id,Person person) {
+    public int updatePersonById(UUID id,Person update) {
         return selectPersonById(id)
-                .map(person1 ->{
+                .map(person ->{
                     int indexOfPerson = DB.indexOf(person);
                     if(indexOfPerson>=0){
-                        DB.set(indexOfPerson,person);
+                        DB.set(indexOfPerson, new Person(id,update.getName()));
                         return 1;
                     }
                     return 0;
