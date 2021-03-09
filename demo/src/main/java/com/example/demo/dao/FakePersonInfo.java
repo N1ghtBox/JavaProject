@@ -37,6 +37,7 @@ public class FakePersonInfo implements PersonDao{
     public int updatePersonById(UUID id,Person update) {
         return selectPersonById(id)
                 .map(person ->{
+                    if (!person.getType().equals("Admin")){return 0;}
                     int indexOfPerson = DB.indexOf(person);
                     if(indexOfPerson>=0){
                         DB.set(indexOfPerson, new Person(id,update.getName()));
