@@ -1,47 +1,25 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.PersonDao;
-import com.example.demo.model.Person;
+import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Component
 public class PersonService {
-    private final PersonDao personDao;
+    private final UserRepository userRepository;
 
     @Autowired
-    public PersonService(@Qualifier("fakeDAO") PersonDao personDao) {
-        this.personDao = personDao;
+    public PersonService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
 
-    public int addPerson(Person person){
-        return personDao.insertPerson(person);
+    public List<User> getAllPeople() {
+        return userRepository.findAll();
     }
 
-    public List<Person> getAllPeople(){
-        return List.of(
-                new Person(UUID.randomUUID(),"Dawid Witczak"),
-                new Person(UUID.randomUUID(),"Jakub Snuszka")
-        );
-    }
-
-    public Optional<Person> getPersonById(UUID id){
-        return personDao.selectPersonById((id));
-    }
-
-    public int deletePerson(UUID id){
-        return personDao.deletePersonById(id);
-    }
-
-    public int updatePerson(UUID id, Person newperson){
-        return personDao.updatePersonById(id,newperson);
-    }
 }

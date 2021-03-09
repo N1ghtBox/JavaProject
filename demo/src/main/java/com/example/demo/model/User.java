@@ -8,11 +8,11 @@ import java.util.UUID;
 
 @Entity
 @Table
-public class Person {
+public class User {
 
     @Id
     @SequenceGenerator(
-            name="user_sequence",
+            name = "user_sequence",
             sequenceName = "user_sequence",
             allocationSize = 1
     )
@@ -23,13 +23,14 @@ public class Person {
     private final String type;
 
 
-    public Person(@JsonProperty("id") UUID id,
-                  @JsonProperty("name") String name) {
+    public User(@JsonProperty("id") UUID id,
+                @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
         this.type = "User";
     }
-    public Person(){
+
+    public User() {
         this.id = UUID.randomUUID();
         this.name = "Unknown";
         this.type = "User";
@@ -43,6 +44,8 @@ public class Person {
         return name;
     }
 
-    public String getType() { return type; }
+    public String getType() {
+        return type;
+    }
 
 }
