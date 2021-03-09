@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Entity
-@Table
+@Table(name="person")
 public class User {
 
     @Id
@@ -24,13 +24,21 @@ public class User {
 
 
     public User(@JsonProperty("id") UUID id,
-                @JsonProperty("name") String name) {
+                @JsonProperty("name") String name,
+                @JsonProperty("type") String type) {
         this.id = id;
+        this.name = name;
+        this.type = type;
+    }
+
+    public User(@JsonProperty("id") UUID id,
+                @JsonProperty("name") String name) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.type = "User";
     }
 
-    public User() {
+    public User(){
         this.id = UUID.randomUUID();
         this.name = "Unknown";
         this.type = "User";
