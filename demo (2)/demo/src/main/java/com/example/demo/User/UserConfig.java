@@ -19,6 +19,7 @@ public class UserConfig {
                         "Dawid Witczak",
                         "nxo@nox.pl",
                         null);
+                Admin.setFlightTarget(null);
                 repository.save(Admin);
         };
     }

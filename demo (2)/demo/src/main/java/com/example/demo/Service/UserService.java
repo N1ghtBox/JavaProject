@@ -7,6 +7,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,11 @@ public class UserService {
         if (flightOptional.isEmpty()) {
             throw new IllegalStateException("Taki lot nie istnieje");
         }
+        Flight chosenFlight = flightsRepository.getFlightByStartDate(user.getDate());
+        Hashtable<String,String> direction = new Hashtable<String,String>();
+        direction.put("to",chosenFlight.getToCity());
+        direction.put("from", chosenFlight.getFromCity());
+        user.setFlightTarget(direction);
         userRepository.save(user);
         sendEmail(user);
     }
@@ -53,7 +59,9 @@ public class UserService {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(user.getEmail());
         msg.setSubject("Bilety lotniczne");
-        String tekst = String.format("Witaj %s\nUdało ci się zarejestrować bilety na dzień %tD",user.getName(),user.getDate());
+        String tekst = String.format("Witaj %s\nUdało ci się zarejestrować bilety na dzień %tD\n" +
+                "Lot będzie startował z %s i będzie lądował w %s\n Pozdrawiamy",
+                user.getName(),user.getDate(),user.getFlightTarget().get("from"),user.getFlightTarget().get("to"));
         msg.setText(tekst);
 
         javaMailSender.send(msg);

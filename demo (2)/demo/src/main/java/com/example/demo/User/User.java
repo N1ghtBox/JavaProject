@@ -2,6 +2,7 @@ package com.example.demo.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Hashtable;
 
 @Entity
 @Table(name = "Users")
@@ -21,6 +22,15 @@ public class User {
     private String email;
     private LocalDate date;
     private String type;
+    private Hashtable<String,String> flightTarget = new Hashtable<String, String>();
+
+    public void setFlightTarget(Hashtable<String, String> flightTarget) {
+        this.flightTarget = flightTarget;
+    }
+
+    public Hashtable<String, String> getFlightTarget() {
+        return flightTarget;
+    }
 
     public User() {
     }
