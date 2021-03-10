@@ -3,28 +3,27 @@ package com.example.demo.Service;
 import com.example.demo.Flights.Flight;
 import com.example.demo.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
     private final FlightsRepository flightsRepository;
+    private final JavaMailSender javaMailSender;
 
     @Autowired
-    public UserService(UserRepository userRepository, FlightsRepository flightsRepository) {
+    public UserService(UserRepository userRepository,
+                       FlightsRepository flightsRepository,
+                       JavaMailSender javaMailSender) {
         this.userRepository = userRepository;
         this.flightsRepository = flightsRepository;
+        this.javaMailSender = javaMailSender;
     }
 
     public List<User> getUsers() {
@@ -51,24 +50,13 @@ public class UserService {
     }
 
     public void sendEmail(User user) {
-        String to = user.getEmail();
-        String from = "witczak.dawid.2gp@gmail.com";
-        String host = "localhost";
-        Properties properties = System.getProperties();
-        Session session = Session.getDefaultInstance(properties);
-        try{
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(from);
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("Bilet lotniczy");
-            String tekst = String.format("Udało ci się zabookować bilet na dzień %tD",
-                    user.getDate());
-            message.setText(tekst);
-            Transport.send(message);
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(user.getEmail());
+        msg.setSubject("Bilety lotniczne");
+        String tekst = String.format("Witaj %s\nUdało ci się zarejestrować bilety na dzień %tD",user.getName(),user.getDate());
+        msg.setText(tekst);
 
-        }catch(MessagingException mex) {
-            mex.printStackTrace();
-        }
+        javaMailSender.send(msg);
 
     }
 }

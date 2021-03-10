@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping(path="flight")
+@RequestMapping(path = "flight")
 @RestController
 public class FlightController {
     private final FlightsService flightsService;
@@ -17,12 +17,12 @@ public class FlightController {
     }
 
     @GetMapping
-    public List<Flight> getAllFlight(){
+    public List<Flight> getAllFlight() {
         return flightsService.getAllFlights();
     }
 
     @PostMapping
-    public void addNewFlight(@RequestBody Flight flight){
+    public void addNewFlight(@RequestBody Flight flight) {
         flightsService.addNewFlight(flight);
     }
 }
