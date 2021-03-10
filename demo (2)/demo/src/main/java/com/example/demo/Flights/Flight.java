@@ -21,10 +21,10 @@ public class Flight {
     private String fromCity;
     private String toCity;
 
-    public Flight(LocalDate startDate, String from, String to) {
+    public Flight(LocalDate startDate, String fromCity, String toCity) {
         this.startDate = startDate;
-        this.fromCity = from;
-        this.toCity = to;
+        this.fromCity = fromCity;
+        this.toCity = toCity;
     }
 
     public Flight() {
@@ -46,12 +46,12 @@ public class Flight {
         this.startDate = startDate;
     }
 
-    public String getFrom() {
+    public String getFromCity() {
         return fromCity;
     }
 
-    public void setFrom(String from) {
-        this.fromCity = from;
+    public void setFromCity(String fromCity) {
+        this.fromCity = fromCity;
     }
 
     public String getToCity() {

@@ -1,14 +1,15 @@
 package com.example.demo.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-@Table(name="Users")
+@Table(name = "Users")
 public class User {
     @Id
     @SequenceGenerator(
-            name="user_sequence",
-            sequenceName="user_sequence",
+            name = "user_sequence",
+            sequenceName = "user_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
@@ -18,6 +19,7 @@ public class User {
     private Long id;
     private String name;
     private String email;
+    private LocalDate date;
     private String type;
 
     public User() {
@@ -25,10 +27,36 @@ public class User {
 
     public User(String name,
                 String email,
+                LocalDate date,
                 String type) {
         this.name = name;
         this.email = email;
+        this.date = date;
         this.type = type;
+    }
+
+    public User(Long id,
+                String type,
+                String name,
+                String email,
+                LocalDate date) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+        this.email = email;
+        this.date = null;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setType(LocalDate date) {
+        this.date = date;
     }
 
     @Override
@@ -37,18 +65,8 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + date + '\'' +
                 '}';
-    }
-
-    public User(Long id,
-                String name,
-                String email,
-                String type) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.type = type;
     }
 
     public Long getId() {
@@ -75,11 +93,11 @@ public class User {
         this.email = email;
     }
 
-    public String getType() {
-        return type;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

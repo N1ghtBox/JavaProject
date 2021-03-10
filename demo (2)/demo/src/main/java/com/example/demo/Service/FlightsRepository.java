@@ -1,13 +1,16 @@
 package com.example.demo.Service;
 
+import com.example.demo.Flights.Flight;
 import com.example.demo.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository
-        extends JpaRepository<User,Long> {
-    User findUserById(Long id);
+public interface FlightsRepository
+        extends JpaRepository<Flight,Long> {
+
+    Optional<Flight> findFlightByStartDate(LocalDate startDate);
 }
