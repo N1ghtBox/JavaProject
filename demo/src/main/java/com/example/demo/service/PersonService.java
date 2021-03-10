@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Component
 public class PersonService {
     private final UserRepository userRepository;
 
     @Autowired
     public PersonService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public static void addNewUser(User user,UserRepository userRepository) {
+        userRepository.saveAll(List.of(user));
     }
 
 

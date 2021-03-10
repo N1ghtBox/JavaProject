@@ -3,13 +3,13 @@ package com.example.demo.api;
 import com.example.demo.model.User;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
-@RequestMapping("api/v1/person")
+@RequestMapping(value = "api/v1/person",
+                consumes={"application/json"})
 @RestController
 public class PersonController {
     private final PersonService personService;
@@ -22,6 +22,11 @@ public class PersonController {
     @GetMapping
     public List<User> getAllPeople() {
         return personService.getAllPeople();
+    }
+
+    @PostMapping
+    public void RegisterNewUser(@Valid @RequestBody User user) {
+        System.out.println(user);
     }
 
 }
