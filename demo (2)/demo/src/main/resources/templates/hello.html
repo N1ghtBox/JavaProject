@@ -4,9 +4,16 @@
     <title>Hello World</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-    <link href="/mystyle.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
 </head>
 <body>
 <p th:text="'Hello, ' + ${name} + '!'"></p>
+<form method="POST" action="/main/test" commandName="test">
+    <input type="text" name="type" value="">
+    <input type="text" name="email" value="">
+    <input type="text" name="name" value="">
+    <input type="text" name="date" value="">
+    <input type="submit" value="Test">
+</form>
 </body>
 </html>
