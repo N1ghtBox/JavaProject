@@ -20,14 +20,24 @@ public class Flight {
     private LocalDate startDate;
     private String fromCity;
     private String toCity;
+    private Integer Price;
 
-    public Flight(LocalDate startDate, String fromCity, String toCity) {
+    public Flight(LocalDate startDate, String fromCity, String toCity, Integer price) {
         this.startDate = startDate;
         this.fromCity = fromCity;
         this.toCity = toCity;
+        this.Price = price;
     }
 
     public Flight() {
+    }
+
+    public Integer getPrice() {
+        return Price;
+    }
+
+    public void setPrice(Integer price) {
+        Price = price;
     }
 
     public Long getId() {

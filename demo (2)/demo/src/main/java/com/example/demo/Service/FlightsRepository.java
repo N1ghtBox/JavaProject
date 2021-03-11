@@ -12,5 +12,6 @@ public interface FlightsRepository
         extends JpaRepository<Flight, Long> {
 
     Optional<Flight> findFlightByStartDate(LocalDate startDate);
+
     Flight getFlightByStartDate(LocalDate startDate);
 }

@@ -22,15 +22,7 @@ public class User {
     private String email;
     private LocalDate date;
     private String type;
-    private Hashtable<String,String> flightTarget = new Hashtable<String, String>();
-
-    public void setFlightTarget(Hashtable<String, String> flightTarget) {
-        this.flightTarget = flightTarget;
-    }
-
-    public Hashtable<String, String> getFlightTarget() {
-        return flightTarget;
-    }
+    private Hashtable<String, String> flightTarget = new Hashtable<String, String>();
 
     public User() {
     }
@@ -55,6 +47,14 @@ public class User {
         this.name = name;
         this.email = email;
         this.date = null;
+    }
+
+    public Hashtable<String, String> getFlightTarget() {
+        return flightTarget;
+    }
+
+    public void setFlightTarget(Hashtable<String, String> flightTarget) {
+        this.flightTarget = flightTarget;
     }
 
     public String getType() {
