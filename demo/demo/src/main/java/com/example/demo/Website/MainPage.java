@@ -5,8 +5,6 @@ import com.example.demo.User.User;
 import com.example.demo.User.UserController;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +14,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 @Controller
-@EnableWebSecurity
-public class MainPage extends WebSecurityConfigurerAdapter {
+public class MainPage {
     private final UserController userController;
     private final FlightController flightController;
 
@@ -28,18 +25,10 @@ public class MainPage extends WebSecurityConfigurerAdapter {
         this.flightController = flightController;
     }
 
-    @Override
-    protected void configure(final HttpSecurity http) throws Exception {
-        http
-                .formLogin()
-                .loginPage("/login.html")
-                .failureUrl("/login-error.html")
-                .defaultSuccessUrl("/main.html")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/index.html");
+    @RequestMapping("/")
+    public String helloAdmin() {
+        return "hello admin";
     }
-
 
     @GetMapping("/main.html")
     public String hello(Model model) {
