@@ -6,7 +6,6 @@ import com.example.demo.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,10 +41,7 @@ public class UserService {
             throw new IllegalStateException("Flight doesn't exist");
         }
         Flight chosenFlight = flightsRepository.getFlightByStartDate(user.getDate());
-        Hashtable<String, String> direction = new Hashtable<String, String>();
-        direction.put("to", chosenFlight.getToCity());
-        direction.put("from", chosenFlight.getFromCity());
-        user.setFlightTarget(direction);
+        user.setFlightTarget(chosenFlight.getFlights());
         userRepository.save(user);
 
 //        emailSender.setUser(user);

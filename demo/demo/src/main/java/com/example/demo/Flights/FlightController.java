@@ -25,4 +25,8 @@ public class FlightController {
     public void addNewFlight(@RequestBody Flight flight) {
         flightsService.addNewFlight(flight);
     }
+
+    public List<Flight> searchFlights(String city) {
+        return flightsService.getAllFlightsByCity(city);
+    }
 }

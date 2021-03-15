@@ -1,16 +1,19 @@
 package com.example.demo.Website;
 
+import com.example.demo.Flights.Flight;
 import com.example.demo.Flights.FlightController;
 import com.example.demo.User.User;
 import com.example.demo.User.UserController;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -25,14 +28,14 @@ public class MainPage {
         this.flightController = flightController;
     }
 
-    @RequestMapping("/")
-    public String helloAdmin() {
-        return "hello admin";
-    }
-
     @GetMapping("/main.html")
     public String hello(Model model) {
-        model.addAttribute("flights", flightController.getAllFlight());
+        List<Flight> top4 = new ArrayList<Flight>();
+        top4 = flightController.getAllFlight();
+        top4 = top4.subList(0, 4);
+        List<String> labels = Arrays.asList("Flights", "Parking", "For customer");
+        model.addAttribute("labels", labels);
+        model.addAttribute("flights", top4);
         return "main.html";
     }
 
@@ -49,7 +52,7 @@ public class MainPage {
 
     @PostMapping(value = "/test", produces = {"application/json"})
     @ResponseBody
-    public String test(@RequestParam Map<String, String> params) {
+    public String test(@RequestBody Map<String, String> params) {
         JSONObject json = new JSONObject(params);
         User user = new User(
                 params.get("name"),
@@ -60,6 +63,11 @@ public class MainPage {
         userController.registerNewUser(user);
         return "hello.html";
     }
-
+    @PostMapping("/search.html")
+    public String search(@RequestParam Map<String, String> params, Model model){
+        JSONObject json = new JSONObject(params);
+        model.addAttribute("flights", flightController.searchFlights(params.get("searchbar")));
+        return "search.html";
+    }
 }
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lotnisko</title>
+    <link href="/css/mystyle.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <form autocomplete="off" method="POST" th:action="@{/search.html}" action="/search.html">
+        <input name="searchbar" placeholder="Search..." type="text" value="">
+        <button id="searchbutton" type="submit">
+            <div style="-webkit-transform: rotate(45deg);
+               -moz-transform: rotate(45deg);
+                 -o-transform: rotate(45deg);
+                    transform: rotate(45deg);">
+                &#9906;
+            </div>
+        </button>
+    </form>
+</header>
+<main id="main">
+    <div class="flight" th:each="flight: ${flights}">
+        <div class="img"></div>
+        <div class="content"><h3 th:text="${flight.getFlights.get('from')+'-'+flight.getFlights.get('to')}"></h3><br>
+            <p th:text="${flight.getDescription()}"></p>
+        </div>
+        <div class="price" th:text="${'Price: ' +flight.getPrice()}"></div>
+    </div>
+</main>
+</body>
+</html>

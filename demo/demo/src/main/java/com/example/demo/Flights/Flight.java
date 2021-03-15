@@ -2,6 +2,7 @@ package com.example.demo.Flights;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Hashtable;
 
 @Entity
 @Table
@@ -18,26 +19,42 @@ public class Flight {
     )
     private Long id;
     private LocalDate startDate;
-    private String fromCity;
-    private String toCity;
-    private Integer Price;
+    private Hashtable<String, String> flights;
+    private String description;
+    private Integer price;
 
-    public Flight(LocalDate startDate, String fromCity, String toCity, Integer price) {
+    public Flight(LocalDate startDate, Hashtable<String, String> flights, String description, Integer price) {
         this.startDate = startDate;
-        this.fromCity = fromCity;
-        this.toCity = toCity;
-        this.Price = price;
+        this.flights = flights;
+        this.description = description;
+        this.price = price;
     }
 
     public Flight() {
     }
 
     public Integer getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(Integer price) {
-        Price = price;
+        this.price = price;
+    }
+
+    public Hashtable<String, String> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(Hashtable<String, String> flights) {
+        this.flights = flights;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getId() {
@@ -56,19 +73,4 @@ public class Flight {
         this.startDate = startDate;
     }
 
-    public String getFromCity() {
-        return fromCity;
-    }
-
-    public void setFromCity(String fromCity) {
-        this.fromCity = fromCity;
-    }
-
-    public String getToCity() {
-        return toCity;
-    }
-
-    public void setToCity(String toCity) {
-        this.toCity = toCity;
-    }
 }

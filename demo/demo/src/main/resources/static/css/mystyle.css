@@ -1,4 +1,142 @@
 body{
-    background-color:#c4c4b5;
+    margin:0;
+    background-color:#6B6DBF;
     font-size:20px;
+}
+header{
+   height:7vh;
+   background-color:#e4e7eb;
+   width:100%;
+   position:fixed;
+   display:flex;
+   justify-content:flex-end;
+   align-items:center;
+   float:left;
+}
+input[type="text"]{
+        width:12vw;
+        height:3vh;
+        padding:5px;
+        border-radius:10px 0px 0px 10px;
+        border:none;
+        outline:none;
+        background-color:#d6d6d6;
+}
+#searchbutton{
+    width:2vw;
+    height:4vh;
+    padding:5px;
+    border-radius:0px 10px 10px 0px;
+    border:none;
+    outline:none;
+    background-color:#c5c5c5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-right:100px;
+    cursor:pointer;
+    float:right;
+}
+main{
+    display:box;
+    height:78vh;
+    width:60vw;
+    float:left;
+    margin-left:5vw;
+    margin-top:5vh;
+}
+.container{
+    margin:4vw;
+    background-color:#abaccf;
+    width:20vw;
+    height:30vh;
+    float:left;
+    border-radius:15px;
+    box-shadow:0px 1px 20px 2px rgba(0,0,0,0.35)
+
+}
+.container div{
+    border-radius: 15px 15px 0 0;
+    height:60%;
+    background: url("./images/img.jpg");
+    background-size: 100% 100%;
+}
+.container p{
+    padding-left:15px;
+    margin:0;
+    float:left;
+}
+.container h4{
+    margin:0;
+    padding:15px;
+}
+nav{
+    height:93vh;
+    width:25vw;
+    background-color:#4C4FCA;
+    float:right;
+    margin-top:7vh;
+    position:relative;
+    display:box;
+}
+table{
+    width:75%;
+    margin-left:8%;
+    margin-top:5%;
+}
+
+td{
+    height:5vh;
+    border-bottom:2px dashed #a1a5ab;
+    padding:10px
+}
+td:hover{
+    background-color:#3b3eb9;
+}
+#main{
+margin-left:0;
+    width:100vw;
+    height:93vh;
+    float:left;
+}
+.img{
+    width:20vw;
+    height:30vh;
+    background: url("./images/img.jpg");
+    background-size: 200% 100%;
+    float:left;
+}
+.flight{
+    margin:5%;
+    margin-left:7%;
+    width: 80%;
+    height:30vh;
+    background-color:white;
+    display:box;
+    border:0.5px solid black;
+}
+
+.content{
+    width: 58vw;
+    float:left;
+    margin-left:2vw;
+}
+p{
+    margin:0;
+    padding:0;
+    width:100%;
+}
+h3{
+    margin:0;
+    padding:15px;
+    padding-left:0;
+    border-bottom: 2px dashed #a1a5ab;
+    width:60%;
+}
+.price{
+    position:absolute;
+    margin-top:25vh;
+    width:70%;
+    text-align:right;
+    float:left;
 }

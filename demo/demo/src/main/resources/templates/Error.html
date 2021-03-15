@@ -1,13 +1,41 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Error page</title>
-    <meta charset="utf-8"/>
-    <link href="css/main.css" rel="stylesheet" th:href="@{/css/main.css}"/>
+    <title>Hello World</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link href="/css/mystyle.css" rel="stylesheet">
 </head>
-<body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
-<h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
-<p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
-<a href="index.html" th:href="@{/index.html}">Back to Home Page</a>
+<body>
+<header>
+    <form autocomplete="off" method="POST" th:action="@{/search.html}">
+        <input name="searchbar" placeholder="Search..." type="text" value="">
+        <button id="searchbutton" type="submit">
+            <div style="-webkit-transform: rotate(45deg);
+               -moz-transform: rotate(45deg);
+                 -o-transform: rotate(45deg);
+                    transform: rotate(45deg);">
+                &#9906;
+            </div>
+        </button>
+    </form>
+</header>
+<main>
+    <div class="container" th:each="flight: ${flights}">
+        <div>
+        </div>
+        <h4 th:text="${flight.getStartDate().getMonth()+', '+flight.getStartDate().getDayOfMonth()}"></h4>
+        <p th:text="${flight.description}">
+        </p>
+    </div>
+</main>
+<nav>
+    <table>
+        <tr th:each="label: ${labels}">
+            <td th:text="${label}">
+            </td>
+        </tr>
+    </table>
+</nav>
 </body>
 </html>

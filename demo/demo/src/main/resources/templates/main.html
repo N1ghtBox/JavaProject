@@ -1,34 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello World</title>
+    <title>Airport</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <link href="/css/mystyle.css" rel="stylesheet">
 </head>
 <body>
-<table border="1" cellpadding="10">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Country</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="flight : ${flights}">
-        <td th:text="${flight.startDate}">Data</td>
-        <td th:text="${flight.fromCity}">Start</td>
-        <td th:text="${flight.toCity}">Cel</td>
-    </tr>
-    </tbody>
-</table>
-<form action="/test" commandName="test" method="POST">
-    <input name="type" type="text" value="">
-    <input name="email" type="text" value="">
-    <input name="name" type="text" value="">
-    <input name="date" type="text" value="">
-    <input type="submit" value="Test">
-</form>
+
+</nav>
 </body>
 </html>
