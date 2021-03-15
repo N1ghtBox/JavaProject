@@ -29,4 +29,8 @@ public class FlightController {
     public List<Flight> searchFlights(String city) {
         return flightsService.getAllFlightsByCity(city);
     }
+
+    public Flight getById(Long id){
+        return flightsService.getFlightById(id);
+    }
 }

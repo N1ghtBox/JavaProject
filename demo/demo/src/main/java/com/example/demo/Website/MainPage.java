@@ -69,5 +69,13 @@ public class MainPage {
         model.addAttribute("flights", flightController.searchFlights(params.get("searchbar")));
         return "search.html";
     }
+
+    @GetMapping(path="/flight/{id}")
+    public String flight(@PathVariable("id") Long id,Model model){
+        Flight chosenFlight = flightController.getById(id);
+        model.addAttribute("flight",chosenFlight);
+        return "flight.html";
+    }
+
 }
 

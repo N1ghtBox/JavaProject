@@ -33,11 +33,9 @@ public class FlightsService {
                 .collect(Collectors.toList());
         return filteredFlights;
     }
-//    public List<Flight> getAllFlightsByCity(LocalDate date) {
-//        List<Flight> allFlights = flightsRepository.findAll();
-//        Predicate<Flight> containsCity = flight -> flight.getFlights().contains(city);
-//        List<Flight> filteredFlights = allFlights.stream().filter(containsCity)
-//                .collect(Collectors.toList());
-//        return filteredFlights;
-//    }
+
+    public Flight getFlightById(Long id) {
+        return flightsRepository.getFlightById(id);
+    }
+
 }

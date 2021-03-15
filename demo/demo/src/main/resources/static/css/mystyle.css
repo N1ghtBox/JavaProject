@@ -140,3 +140,9 @@ h3{
     text-align:right;
     float:left;
 }
+a{
+    color:black;
+}
+a:active{
+color:black;
+}

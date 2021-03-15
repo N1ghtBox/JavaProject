@@ -17,4 +17,6 @@ public interface FlightsRepository
     Flight getFlightByStartDate(LocalDate startDate);
 
     List<Flight> findByFlightsContaining(String city);
+
+    Flight getFlightById(Long Id);
 }
