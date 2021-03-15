@@ -2,8 +2,9 @@ body{
     margin:0;
     background-color:#6B6DBF;
     font-size:20px;
+    height:200vh;
 }
-header{
+#header{
    height:7vh;
    background-color:#e4e7eb;
    width:100%;
@@ -12,6 +13,9 @@ header{
    justify-content:flex-end;
    align-items:center;
    float:left;
+   opacity:0.8;
+   top:0;
+   z-index:1000;
 }
 input[type="text"]{
         width:12vw;
@@ -20,7 +24,7 @@ input[type="text"]{
         border-radius:10px 0px 0px 10px;
         border:none;
         outline:none;
-        background-color:#d6d6d6;
+        background-color:#b4b4b4;
 }
 #searchbutton{
     width:2vw;
@@ -29,7 +33,7 @@ input[type="text"]{
     border-radius:0px 10px 10px 0px;
     border:none;
     outline:none;
-    background-color:#c5c5c5;
+    background-color:#929292;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -37,28 +41,29 @@ input[type="text"]{
     cursor:pointer;
     float:right;
 }
-main{
+
+#scroll{
+    background:url("./images/img.jpg");
+    background-size: 100% 140%
+    background-attachment:scroll;
+    background-position: top center;
     display:box;
-    height:78vh;
-    width:60vw;
-    float:left;
-    margin-left:5vw;
-    margin-top:5vh;
+    height:82vh;
+    width:100vw;
 }
 .container{
-    margin:4vw;
-    background-color:#abaccf;
-    width:20vw;
+    background-color:rgba(171, 172, 207, 0.85);
+    width:12vw;
     height:30vh;
     float:left;
-    border-radius:15px;
-    box-shadow:0px 1px 20px 2px rgba(0,0,0,0.35)
-
+    border-radius:5px;
+    margin: 0 1.5vw;
+    z-index:99;
 }
 .container div{
     border-radius: 15px 15px 0 0;
     height:60%;
-    background: url("./images/img.jpg");
+    background: url("./images/flight-ticket.svg");
     background-size: 100% 100%;
 }
 .container p{
@@ -70,14 +75,12 @@ main{
     margin:0;
     padding:15px;
 }
-nav{
-    height:93vh;
-    width:25vw;
-    background-color:#4C4FCA;
-    float:right;
-    margin-top:7vh;
-    position:relative;
-    display:box;
+#wraper{
+    display:flex;
+    width:100%;
+    justify-content: center;
+    margin-top:-15vh;
+    z-index:99;
 }
 table{
     width:75%;

@@ -39,6 +39,7 @@ public class MainPage {
         return "main.html";
     }
 
+
     @RequestMapping("/login.html")
     public String login() {
         return "login.html";

@@ -6,8 +6,8 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <link href="/css/mystyle.css" rel="stylesheet">
 </head>
-<body>
-<header>
+<body id="body">
+<header id="header">
     <form autocomplete="off" method="POST" th:action="@{/search.html}">
         <input name="searchbar" placeholder="Search..." type="text" value="">
         <button id="searchbutton" type="submit">
@@ -20,24 +20,30 @@
         </button>
     </form>
 </header>
-<main>
-    <a th:each="flight: ${flights}" th:href="@{'/flight/'+${flight.getId()}}">
-    <div class="container" >
-        <div>
-        </div>
-        <h4 th:text="${flight.getStartDate().getMonth()+', '+flight.getStartDate().getDayOfMonth()}"></h4>
-        <p th:text="${flight.description}">
-        </p>
-    </div>
-    </a>
+<main id="scroll">
 </main>
-<nav>
-    <table>
-        <tr th:each="label: ${labels}">
-            <td th:text="${label}">
-            </td>
-        </tr>
-    </table>
-</nav>
+<script type="text/javascript" th:src="@{css/js/main.js}"></script>
+<div id="wraper">
+    <div class="container">
+        <div></div>
+        <h4>zw</h4>
+        <p>zw</p>
+    </div>
+    <div class="container">
+        <div></div>
+        <h4>zw</h4>
+        <p>zw</p>
+    </div>
+    <div class="container">
+        <div></div>
+        <h4>zw</h4>
+        <p>zw</p>
+    </div>
+    <div class="container">
+        <div></div>
+        <h4>zaraz wracam</h4>
+        <p>UwU<3</p>
+    </div>
+</div>
 </body>
 </html>
