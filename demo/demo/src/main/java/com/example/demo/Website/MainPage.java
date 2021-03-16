@@ -4,13 +4,13 @@ import com.example.demo.Flights.Flight;
 import com.example.demo.Flights.FlightController;
 import com.example.demo.User.User;
 import com.example.demo.User.UserController;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -54,29 +54,37 @@ public class MainPage {
     @PostMapping(value = "/test", produces = {"application/json"})
     @ResponseBody
     public String test(@RequestBody Map<String, String> params) {
-        JSONObject json = new JSONObject(params);
-        User user = new User(
-                params.get("name"),
-                params.get("email"),
-                LocalDate.parse(params.get("date")),
-                params.get("type")
-        );
-        userController.registerNewUser(user);
-        return "hello.html";
+        return "a";
     }
+
     @PostMapping("/search.html")
-    public String search(@RequestParam Map<String, String> params, Model model){
+    public String search(@RequestParam Map<String, String> params, Model model) {
         JSONObject json = new JSONObject(params);
         model.addAttribute("flights", flightController.searchFlights(params.get("searchbar")));
         return "search.html";
     }
 
-    @GetMapping(path="/flight/{id}")
-    public String flight(@PathVariable("id") Long id,Model model){
+    @GetMapping("/search.html")
+    public String searchGet(Model model) {
+        model.addAttribute("flights", flightController.getAllFlight());
+        return "search.html";
+    }
+
+    @GetMapping(path = "/flight/{id}")
+    public String flight(@PathVariable("id") Long id, Model model) {
         Flight chosenFlight = flightController.getById(id);
-        model.addAttribute("flight",chosenFlight);
+        model.addAttribute("flight", chosenFlight);
         return "flight.html";
     }
+
+    @PostMapping(path = "/flight/{id}", produces = {"application/json"})
+    public String flight(@PathVariable("id") Long id, @RequestParam Map<String, String> params,Model model) throws JSONException {
+        JSONObject json = new JSONObject(params);
+        User user = new User(json.getString("name"),json.getString("email"));
+        userController.registerNewUser(user,id);
+        return flight(id,model);
+    }
+
 
 }
 

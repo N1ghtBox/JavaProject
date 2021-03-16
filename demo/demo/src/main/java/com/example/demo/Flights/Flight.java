@@ -1,12 +1,23 @@
 package com.example.demo.Flights;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Hashtable;
 
 @Entity
 @Table
 public class Flight {
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id.toString() +
+                ", startDate=" + startDate.toString() +
+                ", flights=" + flights.toString() +
+                ", description='" + description.toString() + '\'' +
+                ", price=" + price.toString() +
+                '}';
+    }
+
     @Id
     @SequenceGenerator(
             name = "flight_sequence",
@@ -18,12 +29,12 @@ public class Flight {
             generator = "flight_sequence"
     )
     private Long id;
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     private Hashtable<String, String> flights;
     private String description;
     private Integer price;
 
-    public Flight(LocalDate startDate, Hashtable<String, String> flights, String description, Integer price) {
+    public Flight(LocalDateTime startDate, Hashtable<String, String> flights, String description, Integer price) {
         this.startDate = startDate;
         this.flights = flights;
         this.description = description;
@@ -65,11 +76,11 @@ public class Flight {
         this.id = id;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 

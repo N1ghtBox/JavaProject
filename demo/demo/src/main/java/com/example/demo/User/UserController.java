@@ -1,8 +1,11 @@
 package com.example.demo.User;
 
 import com.example.demo.Service.UserService;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,17 +19,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/user")
     public List<User> getUsers() {
         return userService.getUsers();
     }
 
-    public void registerNewUser(User user) {
-        userService.addNewUser(user);
+    public void registerNewUser(User user, Long id) throws JSONException {
+        userService.addNewUser(user, id);
     }
 
-    @DeleteMapping(path = "/{id}/{idToDelete}")
-    public void deleteUser(@PathVariable("id") Long id, @PathVariable("idToDelete") Long idToDelete) {
-        userService.deleteUser(id, idToDelete);
-    }
 }

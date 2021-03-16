@@ -1,8 +1,7 @@
 body{
     margin:0;
-    background-color:#6B6DBF;
+    background-color:#e4eded;
     font-size:20px;
-    height:200vh;
 }
 #header{
    height:7vh;
@@ -43,37 +42,50 @@ input[type="text"]{
 }
 
 #scroll{
-    background:url("./images/img.jpg");
+    background:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url("./images/img.jpg");
     background-size: 100% 140%
     background-attachment:scroll;
     background-position: top center;
-    display:box;
+    display:flex;
     height:82vh;
     width:100vw;
+    top:0;
+    justify-content:center;
+    align-items:center;
+    color:#edf6f7;
+    font-size:5vw;
+}
+#scroll div{
+    width:25%;
+    transition: width 2s;
 }
 .container{
-    background-color:rgba(171, 172, 207, 0.85);
+    background-color:rgba(166, 166, 166, 0.85);
     width:12vw;
     height:30vh;
     float:left;
     border-radius:5px;
     margin: 0 1.5vw;
     z-index:99;
+    font-size:1vw;
+    text-align:center;
+
 }
 .container div{
+    width:90%;
     border-radius: 15px 15px 0 0;
     height:60%;
-    background: url("./images/flight-ticket.svg");
-    background-size: 100% 100%;
-}
-.container p{
-    padding-left:15px;
-    margin:0;
-    float:left;
+    background: url("./images/flight-ticket.png") no-repeat;
+    background-size: 85% 85%;
+    margin:10%;
 }
 .container h4{
     margin:0;
+    margin-left:auto;
+    margin-right:auto;
     padding:15px;
+    border-top:1px solid black;
+    width:60%;
 }
 #wraper{
     display:flex;
@@ -145,6 +157,7 @@ h3{
 }
 a{
     color:black;
+    z-index:99;
 }
 a:active{
 color:black;

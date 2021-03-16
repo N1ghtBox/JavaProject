@@ -25,10 +25,10 @@ public class EmailSender extends Thread {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
         message.setSubject("Bilety lotniczne");
-        String contentOfMessage = String.format("Witaj %s\nUdało ci się zarejestrować bilety na dzień %tD\n" +
+        String contentOfMessage = String.format("Witaj %s\nUdało ci się zarejestrować bilety na dzień %s\n" +
                         "Lot będzie startował z %s i będzie lądował w %s\nPozdrawiamy\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\n" +
                         "Po więcej informacji prosimy o kontakt: witczak.dawid.2gp@gmail.com :)",
-                user.getName(), user.getDate(), user.getFlightTarget().get("from"), user.getFlightTarget().get("to"));
+                user.getName(), user.getFlightInfo().get("startDate"), user.getFlightInfo().get("flights"),"a");
         message.setText(contentOfMessage);
 
         javaMailSender.send(message);

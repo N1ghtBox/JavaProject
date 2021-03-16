@@ -4,7 +4,6 @@ import com.example.demo.Flights.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -28,6 +27,9 @@ public class FlightsService {
 
     public List<Flight> getAllFlightsByCity(String city) {
         List<Flight> allFlights = flightsRepository.findAll();
+        if (city.equals("")) {
+            return allFlights;
+        }
         Predicate<Flight> containsCity = flight -> flight.getFlights().contains(city);
         List<Flight> filteredFlights = allFlights.stream().filter(containsCity)
                 .collect(Collectors.toList());

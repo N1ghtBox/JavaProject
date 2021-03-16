@@ -7,7 +7,7 @@
 </head>
 <body>
 <header id="header">
-    <form autocomplete="off" method="POST" th:action="@{/search.html}" action="/search.html">
+    <form action="/search.html" autocomplete="off" method="POST" th:action="@{/search.html}">
         <input name="searchbar" placeholder="Search..." type="text" value="">
         <button id="searchbutton" type="submit">
             <div style="-webkit-transform: rotate(45deg);
@@ -20,13 +20,16 @@
     </form>
 </header>
 <main id="main">
-    <div class="flight" th:each="flight: ${flights}">
-        <div class="img"></div>
-        <div class="content"><h3 th:text="${flight.getFlights.get('from')+'-'+flight.getFlights.get('to')}"></h3><br>
-            <p th:text="${flight.getDescription()}"></p>
+    <a th:each="flight: ${flights}" th:href="@{'/flight/'+${flight.getId()}}">
+        <div class="flight">
+            <div class="img"></div>
+            <div class="content"><h3 th:text="${flight.getFlights.get('from')+'-'+flight.getFlights.get('to')+
+        '  '+flight.getStartDate().getMonth()+', '+flight.getStartDate().getDayOfMonth()}"></h3><br>
+                <p th:text="${flight.getDescription()}"></p>
+            </div>
+            <div class="price" th:text="${'Price: ' +flight.getPrice()}"></div>
         </div>
-        <div class="price" th:text="${'Price: ' +flight.getPrice()}"></div>
-    </div>
+    </a>
 </main>
 </body>
 </html>

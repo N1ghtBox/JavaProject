@@ -30,7 +30,7 @@ public class FlightController {
         return flightsService.getAllFlightsByCity(city);
     }
 
-    public Flight getById(Long id){
+    public Flight getById(Long id) {
         return flightsService.getFlightById(id);
     }
 }

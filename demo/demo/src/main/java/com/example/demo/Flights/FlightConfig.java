@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -22,27 +22,27 @@ public class FlightConfig {
         aa.put("from", "Lublin");
         return args -> {
             Flight b = new Flight(
-                    LocalDate.parse("2021-05-01"),
+                    LocalDateTime.parse("2021-05-01"),
                     a,
                     "Lot daleko stąd",
                     1000);
             Flight c = new Flight(
-                    LocalDate.parse("2021-06-01"),
+                    LocalDateTime.parse("2021-06-01"),
                     a,
                     "Lot daleko stąd 2",
                     2000);
             Flight d = new Flight(
-                    LocalDate.parse("2021-06-01"),
+                    LocalDateTime.parse("2021-06-01"),
                     aa,
                     "Lot daleko stąd 3",
                     3000);
             Flight e = new Flight(
-                    LocalDate.parse("2021-06-01"),
+                    LocalDateTime.parse("2021-06-01"),
                     a,
                     "Lot daleko stąd 4",
                     21);
             Flight f = new Flight(
-                    LocalDate.parse("2021-06-01"),
+                    LocalDateTime.parse("2021-06-01"),
                     aa,
                     "Lot daleko stąd 4",
                     3);

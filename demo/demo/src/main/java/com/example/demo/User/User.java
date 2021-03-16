@@ -1,8 +1,9 @@
 package com.example.demo.User;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Hashtable;
+import java.util.Map;
+
 
 @Entity
 @Table(name = "Users")
@@ -20,63 +21,29 @@ public class User {
     private Long id;
     private String name;
     private String email;
-    private LocalDate date;
-    private String type;
-    private Hashtable<String, String> flightTarget = new Hashtable<String, String>();
+    private Hashtable<String, Hashtable<String, String>> flightInfo = new Hashtable<>();
 
     public User() {
     }
 
     public User(String name,
                 String email,
-                LocalDate date,
-                String type) {
+                Hashtable<String, Hashtable<String, String>> flightInfo) {
         this.name = name;
         this.email = email;
-        this.date = date;
-        this.type = type;
+        this.flightInfo = flightInfo;
     }
 
-    public User(Long id,
-                String type,
-                String name,
-                String email,
-                LocalDate date) {
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public User(Long id, String name, String email, Hashtable<String, Hashtable<String, String>> flightInfo) {
         this.id = id;
-        this.type = type;
         this.name = name;
         this.email = email;
-        this.date = null;
-    }
-
-    public Hashtable<String, String> getFlightTarget() {
-        return flightTarget;
-    }
-
-    public void setFlightTarget(Hashtable<String, String> flightTarget) {
-        this.flightTarget = flightTarget;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setType(LocalDate date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", type='" + date + '\'' +
-                '}';
+        this.flightInfo = flightInfo;
     }
 
     public Long getId() {
@@ -103,11 +70,21 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public Hashtable<String, Hashtable<String,String>> getFlightInfo() {
+        return flightInfo;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setFlightInfo(Hashtable<String, Hashtable<String,String>> flightInfo) {
+        this.flightInfo = flightInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", flightInfo=" + flightInfo +
+                '}';
     }
 }

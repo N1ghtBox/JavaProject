@@ -7,6 +7,13 @@
     <link href="/css/mystyle.css" rel="stylesheet">
 </head>
 <body>
-    <p th:text="${flight.id}"></p>
+<p th:text="${flight.id}"></p>
+<form autocomplete="off" method="POST" th:action="@{'/flight/'+${flight.id}}">
+    <label>Name:
+        <input name="name" value=""></label><br>
+    <label>Email:
+        <input name="email" value=""></label><br>
+    <button type="submit">Aaa</button>
+</form>
 </body>
 </html>
