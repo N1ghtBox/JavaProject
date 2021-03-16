@@ -140,13 +140,16 @@ p{
     margin:0;
     padding:0;
     width:100%;
+    clear:both;
 }
 h3{
     margin:0;
+    margin-right:12vw;
     padding:15px;
     padding-left:0;
     border-bottom: 2px dashed #a1a5ab;
     width:60%;
+    float:left;
 }
 .price{
     position:absolute;
@@ -160,5 +163,13 @@ a{
     z-index:99;
 }
 a:active{
-color:black;
+    color:black;
+}
+.stars{
+width:3vh;
+height:3vh;
+background:url("./images/star.png") no-repeat;
+background-size:100% 100%;
+float:left;
+margin-top:15px;
 }

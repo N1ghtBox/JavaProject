@@ -24,7 +24,7 @@
         <div class="flight">
             <div class="img"></div>
             <div class="content"><h3 th:text="${flight.getFlights.get('from')+'-'+flight.getFlights.get('to')+
-        '  '+flight.getStartDate().getMonth()+', '+flight.getStartDate().getDayOfMonth()}"></h3><br>
+        '  '+flight.getStartDate().getMonth()+', '+flight.getStartDate().getDayOfMonth()}"></h3><div th:each="i : ${#numbers.sequence( 1, flight.getRating())}" class="stars"></div><br>
                 <p th:text="${flight.getDescription()}"></p>
             </div>
             <div class="price" th:text="${'Price: ' +flight.getPrice()}"></div>

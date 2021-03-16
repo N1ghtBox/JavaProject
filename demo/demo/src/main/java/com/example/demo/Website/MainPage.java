@@ -30,26 +30,9 @@ public class MainPage {
 
     @GetMapping("/main.html")
     public String hello(Model model) {
-        List<Flight> top4 = new ArrayList<Flight>();
-        top4 = flightController.getAllFlight();
-        top4 = top4.subList(0, 4);
-        List<String> labels = Arrays.asList("Flights", "Parking", "For customer");
-        model.addAttribute("labels", labels);
-        model.addAttribute("flights", top4);
         return "main.html";
     }
 
-
-    @RequestMapping("/login.html")
-    public String login() {
-        return "login.html";
-    }
-
-    @RequestMapping("/login-error.html")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        return "login.html";
-    }
 
     @PostMapping(value = "/test", produces = {"application/json"})
     @ResponseBody
@@ -84,7 +67,10 @@ public class MainPage {
         userController.registerNewUser(user,id);
         return flight(id,model);
     }
-
+    @GetMapping("/brazil.html")
+    public String brazil(){
+        return "brazil.html";
+    }
 
 }
 

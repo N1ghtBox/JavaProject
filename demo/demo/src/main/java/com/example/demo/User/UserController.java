@@ -24,7 +24,7 @@ public class UserController {
         return userService.getUsers();
     }
 
-    public void registerNewUser(User user, Long id) throws JSONException {
+    public void registerNewUser(User user, Long id){
         userService.addNewUser(user, id);
     }
 

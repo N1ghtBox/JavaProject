@@ -43,6 +43,7 @@ public class UserService {
         date.put("year",String.valueOf(time.getYear()));
         date.put("month",String.valueOf(time.getMonth()));
         date.put("day",String.valueOf(time.getDayOfMonth()));
+        date.put("time",String.format("%s:%02d",time.getHour(),time.getMinute()));
         Hashtable<String, Hashtable<String,String>> map = new Hashtable<>();
         map.put("startDate",date);
         map.put("flights",chosenFlight.getFlights());

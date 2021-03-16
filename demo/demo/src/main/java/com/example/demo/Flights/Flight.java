@@ -7,16 +7,6 @@ import java.util.Hashtable;
 @Entity
 @Table
 public class Flight {
-    @Override
-    public String toString() {
-        return "Flight{" +
-                "id=" + id.toString() +
-                ", startDate=" + startDate.toString() +
-                ", flights=" + flights.toString() +
-                ", description='" + description.toString() + '\'' +
-                ", price=" + price.toString() +
-                '}';
-    }
 
     @Id
     @SequenceGenerator(
@@ -34,11 +24,22 @@ public class Flight {
     private String description;
     private Integer price;
 
-    public Flight(LocalDateTime startDate, Hashtable<String, String> flights, String description, Integer price) {
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    private Integer rating;
+
+    public Flight(LocalDateTime startDate, Hashtable<String, String> flights, String description, Integer price, Integer rating) {
         this.startDate = startDate;
         this.flights = flights;
         this.description = description;
         this.price = price;
+        this.rating = rating;
     }
 
     public Flight() {
