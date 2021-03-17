@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Map;
 
 @Controller
@@ -51,8 +52,11 @@ public class MainPage {
     public String flight(@PathVariable("id") Long id, Model model) {
         Flight chosenFlight = flightController.getById(id);
         File directory = new File("src/main/resources/static/css/images/" + id);
+        String[] array = directory.list();
+        String joined = Arrays.toString(array);
+        joined = joined.replace("[","").replace("]","").replace(" ","");
         model.addAttribute("flight", chosenFlight);
-        model.addAttribute("size", directory.list().length);
+        model.addAttribute("size", joined);
         return "flight.html";
     }
 
