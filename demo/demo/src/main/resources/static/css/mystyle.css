@@ -2,6 +2,7 @@ body{
     margin:0;
     background-color:#e4eded;
     font-size:20px;
+    transition-duration: 0.2s;
 }
 #header{
    height:7vh;
@@ -24,6 +25,8 @@ input[type="text"]{
         border:none;
         outline:none;
         background-color:#b4b4b4;
+        display:flex;
+        float:left;
 }
 #searchbutton{
     width:2vw;
@@ -36,14 +39,13 @@ input[type="text"]{
     display:flex;
     justify-content:center;
     align-items:center;
-    margin-right:100px;
+    margin-right:5vw;
     cursor:pointer;
-    float:right;
 }
 
 #scroll{
-    background:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url("./images/img.jpg");
-    background-size: 100% 140%
+    background:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url("./images/img.jpg") no-repeat;
+    background-size: 100% 140%;
     background-attachment:scroll;
     background-position: top center;
     display:flex;
@@ -87,7 +89,7 @@ input[type="text"]{
     border-top:1px solid black;
     width:60%;
 }
-#wraper{
+#wrapper{
     display:flex;
     width:100%;
     justify-content: center;
@@ -172,4 +174,87 @@ background:url("./images/star.png") no-repeat;
 background-size:100% 100%;
 float:left;
 margin-top:15px;
+}
+#noMatchFound{
+font-size:4 vw;
+margin-top:15vh;
+width:40vw;
+text-align:center;
+margin-left:auto;
+margin-right:auto;
+}
+#switches{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:15vh;
+    width:20vw;
+}
+#switches button{
+    background-color:rgba(46, 46, 46,0.9);
+    border-radius:0 10px 10px 0;
+    width:2.5vw;
+    padding:10px;
+    border:none;
+    color:white;
+    outline:none;
+}
+#getPrice{
+    background-color:#d3dcdc;
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    height:10vh;
+}
+.box{
+    text-align:center;
+    width:8vw;
+    float:left;
+    margin: 0 2vw;
+
+}
+.box select,button {
+  background-color: #49a7ef;
+  color: white;
+  padding: 5px;
+  width: 100%;
+  border-radius:4px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.box select option {
+  padding: 30px;
+}
+.box button{
+    width:60%;
+}
+#price{
+    position:absolute;
+    right:0;
+    background-color:rgb(56, 55, 52);
+    overflow:hidden;
+    width:20vw;
+    height:15vh;
+    transform:scaleY(0);
+    transform-origin: center bottom;
+    transition-duration: 0.6s;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0.65;
+    font-size:3vw;
+}
+#numbers{
+   background-color:rgba(46, 46, 46,0.9);
+    width:3.5vw;
+    padding:10px;
+    border:none;
+    color:white;
+     outline:none;
+     text-align:center;
 }

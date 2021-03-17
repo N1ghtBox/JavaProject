@@ -4,6 +4,7 @@ import com.example.demo.Flights.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 @Service
 public class FlightsService {
     private final FlightsRepository flightsRepository;
+    Comparator<Flight> compareByRating = Comparator.comparing(Flight::getRating);
 
     @Autowired
     public FlightsService(FlightsRepository flightsRepository) {
@@ -18,7 +20,9 @@ public class FlightsService {
     }
 
     public List<Flight> getAllFlights() {
-        return flightsRepository.findAll();
+        List<Flight> sorted = flightsRepository.findAll();
+        sorted.sort(compareByRating.reversed());
+        return sorted;
     }
 
     public void addNewFlight(Flight flight) {
@@ -26,7 +30,7 @@ public class FlightsService {
     }
 
     public List<Flight> getAllFlightsByCity(String city) {
-        List<Flight> allFlights = flightsRepository.findAll();
+        List<Flight> allFlights = getAllFlights();
         if (city.equals("")) {
             return allFlights;
         }

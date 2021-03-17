@@ -2,7 +2,6 @@ package com.example.demo.User;
 
 import javax.persistence.*;
 import java.util.Hashtable;
-import java.util.Map;
 
 
 @Entity
@@ -70,11 +69,11 @@ public class User {
         this.email = email;
     }
 
-    public Hashtable<String, Hashtable<String,String>> getFlightInfo() {
+    public Hashtable<String, Hashtable<String, String>> getFlightInfo() {
         return flightInfo;
     }
 
-    public void setFlightInfo(Hashtable<String, Hashtable<String,String>> flightInfo) {
+    public void setFlightInfo(Hashtable<String, Hashtable<String, String>> flightInfo) {
         this.flightInfo = flightInfo;
     }
 

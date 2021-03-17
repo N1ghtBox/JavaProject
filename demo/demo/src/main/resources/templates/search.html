@@ -20,11 +20,15 @@
     </form>
 </header>
 <main id="main">
+    <div id="noMatchFound" th:if="${flights.size()==0}">
+        <h1>Flight not found</h1>
+    </div>
     <a th:each="flight: ${flights}" th:href="@{'/flight/'+${flight.getId()}}">
         <div class="flight">
             <div class="img"></div>
-            <div class="content"><h3 th:text="${flight.getFlights.get('from')+'-'+flight.getFlights.get('to')+
-        '  '+flight.getStartDate().getMonth()+', '+flight.getStartDate().getDayOfMonth()}"></h3><div th:each="i : ${#numbers.sequence( 1, flight.getRating())}" class="stars"></div><br>
+            <div class="content"><h3 th:text="${flight.getFlights.get('to')+'-'+flight.getFlights.get('hotel')}"></h3>
+                <div class="stars" th:each="i : ${#numbers.sequence( 1, flight.getRating())}"></div>
+                <br>
                 <p th:text="${flight.getDescription()}"></p>
             </div>
             <div class="price" th:text="${'Price: ' +flight.getPrice()}"></div>

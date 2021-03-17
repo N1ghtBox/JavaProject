@@ -28,7 +28,7 @@ public class EmailSender extends Thread {
         String contentOfMessage = String.format("Witaj %s\nUdało ci się zarejestrować bilety na dzień %s\n" +
                         "Lot będzie startował z %s i będzie lądował w %s\nPozdrawiamy\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\n" +
                         "Po więcej informacji prosimy o kontakt: witczak.dawid.2gp@gmail.com :)",
-                user.getName(), user.getFlightInfo().get("startDate"), user.getFlightInfo().get("flights"),"a");
+                user.getName(), user.getFlightInfo().get("startDate"), user.getFlightInfo().get("flights"), "a");
         message.setText(contentOfMessage);
 
         javaMailSender.send(message);

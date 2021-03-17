@@ -6,7 +6,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <link href="/css/mystyle.css" rel="stylesheet">
 </head>
-<body>
+<body th:attr="onload=|getFlightId('${flight.getId()}','${size}')|">
 <header id="header">
     <form autocomplete="off" method="POST" th:action="@{/search.html}">
         <input name="searchbar" placeholder="Search..." type="text" value="">
@@ -23,7 +23,42 @@
 <main id="scroll">
 
 </main>
+<script th:src="@{/css/js/flight.js}" type="text/javascript"></script>
+<div id="wrapper">
+    <div id="switches">
+        <button onclick="change(-1)" style="transform:rotate(180deg)">&#62</button>
+        <div id="numbers">
 
+        </div>
+        <button onclick="change(1)">&#62</button>
+    </div>
+    <div id="price">
+        a
+    </div>
+</div>
+<div id="getPrice">
+    <h4 class="box" style="position:absolute;left:0;" th:text="'Price for night: '+${flight.getPrice()}+' zł'">
 
+    </h4>
+    <h4 class="box">
+        Oblicz koszty
+    </h4>
+    <div class="box">
+        <select id="people">
+            <option disabled selected value=""> Liczba osób</option>
+            <option th:each="i : ${#numbers.sequence( 1, 10)}" th:label="${i}" th:value="${i}">
+
+            </option>
+        </select></div>
+    <div class="box">
+        <select id="nights">
+            <option disabled selected value=""> Liczba nocy</option>
+            <option th:each="i : ${#numbers.sequence( 1, 10)}" th:label="${i}" th:value="${i}">
+            </option>
+        </select></div>
+    <div class="box">
+        <button th:attr="onclick=|getPrice('${flight.getPrice()}')|">Oblicz</button>
+    </div>
+</div>
 </body>
 </html>

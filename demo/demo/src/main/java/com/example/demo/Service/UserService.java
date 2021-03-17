@@ -7,8 +7,9 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -38,15 +39,8 @@ public class UserService {
             throw new IllegalStateException("This email is taken");
         }
         Flight chosenFlight = flightsRepository.getFlightById(id);
-        LocalDateTime time =chosenFlight.getStartDate();
-        Hashtable<String,String> date = new Hashtable<>();
-        date.put("year",String.valueOf(time.getYear()));
-        date.put("month",String.valueOf(time.getMonth()));
-        date.put("day",String.valueOf(time.getDayOfMonth()));
-        date.put("time",String.format("%s:%02d",time.getHour(),time.getMinute()));
-        Hashtable<String, Hashtable<String,String>> map = new Hashtable<>();
-        map.put("startDate",date);
-        map.put("flights",chosenFlight.getFlights());
+        Hashtable<String, Hashtable<String, String>> map = new Hashtable<>();
+        map.put("flights", chosenFlight.getFlights());
         user.setFlightInfo(map);
         userRepository.save(user);
 

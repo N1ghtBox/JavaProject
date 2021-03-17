@@ -1,7 +1,6 @@
 package com.example.demo.User;
 
 import com.example.demo.Service.UserService;
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +23,7 @@ public class UserController {
         return userService.getUsers();
     }
 
-    public void registerNewUser(User user, Long id){
+    public void registerNewUser(User user, Long id) {
         userService.addNewUser(user, id);
     }
 

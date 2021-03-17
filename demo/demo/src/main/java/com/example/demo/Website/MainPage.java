@@ -9,11 +9,12 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.File;
 import java.util.Map;
 
 @Controller
@@ -33,13 +34,6 @@ public class MainPage {
         return "main.html";
     }
 
-
-    @PostMapping(value = "/test", produces = {"application/json"})
-    @ResponseBody
-    public String test(@RequestBody Map<String, String> params) {
-        return "a";
-    }
-
     @PostMapping("/search.html")
     public String search(@RequestParam Map<String, String> params, Model model) {
         JSONObject json = new JSONObject(params);
@@ -56,19 +50,22 @@ public class MainPage {
     @GetMapping(path = "/flight/{id}")
     public String flight(@PathVariable("id") Long id, Model model) {
         Flight chosenFlight = flightController.getById(id);
+        File directory = new File("src/main/resources/static/css/images/" + id);
         model.addAttribute("flight", chosenFlight);
+        model.addAttribute("size", directory.list().length);
         return "flight.html";
     }
 
     @PostMapping(path = "/flight/{id}", produces = {"application/json"})
-    public String flight(@PathVariable("id") Long id, @RequestParam Map<String, String> params,Model model) throws JSONException {
+    public String flight(@PathVariable("id") Long id, @RequestParam Map<String, String> params, Model model) throws JSONException {
         JSONObject json = new JSONObject(params);
-        User user = new User(json.getString("name"),json.getString("email"));
-        userController.registerNewUser(user,id);
-        return flight(id,model);
+        User user = new User(json.getString("name"), json.getString("email"));
+        userController.registerNewUser(user, id);
+        return flight(id, model);
     }
+
     @GetMapping("/brazil.html")
-    public String brazil(){
+    public String brazil() {
         return "brazil.html";
     }
 

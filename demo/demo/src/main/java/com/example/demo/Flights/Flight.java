@@ -1,7 +1,6 @@
 package com.example.demo.Flights;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Hashtable;
 
 @Entity
@@ -19,23 +18,12 @@ public class Flight {
             generator = "flight_sequence"
     )
     private Long id;
-    private LocalDateTime startDate;
     private Hashtable<String, String> flights;
     private String description;
     private Integer price;
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
     private Integer rating;
 
-    public Flight(LocalDateTime startDate, Hashtable<String, String> flights, String description, Integer price, Integer rating) {
-        this.startDate = startDate;
+    public Flight(Hashtable<String, String> flights, String description, Integer price, Integer rating) {
         this.flights = flights;
         this.description = description;
         this.price = price;
@@ -43,6 +31,14 @@ public class Flight {
     }
 
     public Flight() {
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     public Integer getPrice() {
@@ -75,14 +71,6 @@ public class Flight {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
     }
 
 }
