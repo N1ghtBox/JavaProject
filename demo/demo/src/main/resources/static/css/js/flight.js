@@ -12,7 +12,7 @@ function change(number){
         activeNumber=size;
     }
     document.getElementById("numbers").innerText = activeNumber+" z "+size;
-    if(allFiles.length<=1){return 0;}
+    if(allFiles[0]=="null"){return 0;}
     document.getElementById("scroll").style.background = "linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.2)), url(/css/images/"+flight+"/"+allFiles[activeNumber-1]+") no-repeat";
     document.getElementById("scroll").style.backgroundSize = "100% 140%";
 
@@ -23,7 +23,6 @@ function getFlightId(flightId,listOfFiles){
     flight = flightId;
     size = allFiles.length;
     change(0);
-
 }
 function getPrice(price){
     var people = parseInt(document.getElementById("people").value);

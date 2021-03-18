@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello World</title>
+    <title th:text="${flight.getFlights().get('to')}"></title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <link href="/css/mystyle.css" rel="stylesheet">
@@ -41,23 +41,23 @@
 
     </h4>
     <h4 class="box">
-        Oblicz koszty
+        Calculate the costs
     </h4>
     <div class="box">
         <select id="people">
-            <option disabled selected value=""> Liczba osób</option>
+            <option disabled selected value="">No. people</option>
             <option th:each="i : ${#numbers.sequence( 1, 10)}" th:label="${i}" th:value="${i}">
 
             </option>
         </select></div>
     <div class="box">
         <select id="nights">
-            <option disabled selected value=""> Liczba nocy</option>
+            <option disabled selected value="">No. nights</option>
             <option th:each="i : ${#numbers.sequence( 1, 10)}" th:label="${i}" th:value="${i}">
             </option>
         </select></div>
     <div class="box">
-        <button th:attr="onclick=|getPrice('${flight.getPrice()}')|">Oblicz</button>
+        <button th:attr="onclick=|getPrice('${flight.getPrice()}')|">Result</button>
     </div>
 </div>
 </body>

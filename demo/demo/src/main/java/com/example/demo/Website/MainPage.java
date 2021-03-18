@@ -54,7 +54,7 @@ public class MainPage {
         File directory = new File("src/main/resources/static/css/images/" + id);
         String[] array = directory.list();
         String joined = Arrays.toString(array);
-        joined = joined.replace("[","").replace("]","").replace(" ","");
+        joined = joined.replace("[", "").replace("]", "").replace(" ", "");
         model.addAttribute("flight", chosenFlight);
         model.addAttribute("size", joined);
         return "flight.html";
@@ -67,7 +67,12 @@ public class MainPage {
         userController.registerNewUser(user, id);
         return flight(id, model);
     }
-
+    @GetMapping("/flight/{id}/book")
+    public String bookFlight(@PathVariable("id") Long id,Model model){
+        Flight chosenFlight = flightController.getById(id);
+        model.addAttribute("flight", chosenFlight);
+        return "form.html";
+    }
     @GetMapping("/brazil.html")
     public String brazil() {
         return "brazil.html";

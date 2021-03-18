@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${flight.getFlights().get('to')}"></title>
+    <link href="/css/mystyle.css" rel="stylesheet">
+
+
+</head>
+<body id="body">
+<main id="scroll"
+      th:style="'background:url('+@{${flight.getImagePath()}}+'); background-size:100% 300%;height:40vh;background-position:120% 30%'">
+
+</main>
+<h2 class="transport">Form of transport:</h2>
+<div class="choices" style="width:60%;">
+    <input type="radio" name="choice" id="choice_1" value="1" checked>
+    <label for="choice_1" class="choice" >Sample text</label>
+
+    <input type="radio" name="choice" id="choice_2" value="1">
+    <label for="choice_2" class="choice">Sample text</label>
+</div>
+<div class="choices" style="width:60%;">
+
+<input type="radio" name="choice" id="choice_3" value="1">
+    <label for="choice_3" class="choice">Sample text</label>
+
+    <input type="radio" name="choice" id="choice_4" value="1">
+    <label for="choice_4" class="choice" >Sample text</label>
+</div>
+<h2 class="transport" style="margin-bottom:4vh;,margin-top:0;">Information's:</h2>
+<div id="form">
+    <div class="divide"></div>
+    <div class="divide" style="background-color:#349ded;">
+        <div class="stars" th:each="i : ${#numbers.sequence( 1, flight.getRating())}" ></div>
+        <p th:utext="'<h2>Offer '+'<br/>'+${flight.getFlights.get('to')+'-'+flight.getFlights.get('hotel')}+'</h2>'"></p>
+        <div class="input">
+            <label for="name">Name:</label><br>
+            <input type="text" name="name" id="name" value="">
+        </div>
+        <div class="input">
+        <label for="surName">Surname:</label><br>
+        <input type="text" name="surName" id="surName" value="">
+            </div>
+        <div class="input" style="width:60%">
+            <label for="Email">Email:</label><br>
+            <input type="text" name="Email" id="Email" value="">
+        </div>
+    </div>
+</div>
+</body>
+</html>

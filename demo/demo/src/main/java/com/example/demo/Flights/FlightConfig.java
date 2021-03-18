@@ -13,35 +13,33 @@ public class FlightConfig {
 
     @Bean
     CommandLineRunner commandLineRunner(FlightsRepository repository) {
-        Hashtable<String, String> a = new Hashtable<String, String>();
-        a.put("to", "Warszawa");
-        a.put("hotel", "Szczecin");
-        Hashtable<String, String> aa = new Hashtable<String, String>();
-        aa.put("to", "Śrem");
-        aa.put("hotel", "Lublin");
+        Hashtable<String,String> first = new Hashtable<String, String>();
+        first.put("to","Warszawa");
+        first.put("hotel","Gromada");
         return args -> {
             Flight b = new Flight(
-                    a,
+                    first,
                     "Lot daleko stąd",
                     1000,
                     1);
             Flight c = new Flight(
-                    a,
+                    first,
                     "Lot daleko stąd 2",
                     2000, 1);
             Flight d = new Flight(
-                    aa,
+                    first,
                     "Lot daleko stąd 3",
                     3000, 3);
             Flight e = new Flight(
-                    a,
+                    first,
                     "Lot daleko stąd 4",
                     21, 4);
             Flight f = new Flight(
-                    aa,
+                    first,
                     "Lot daleko stąd 4",
                     3, 2);
             repository.saveAll(List.of(b, c, d, e, f));
         };
     }
 }
+

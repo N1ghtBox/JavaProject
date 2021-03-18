@@ -8,7 +8,7 @@
 <body>
 <header id="header">
     <form action="/search.html" autocomplete="off" method="POST" th:action="@{/search.html}">
-        <input name="searchbar" placeholder="Search..." type="text" value="">
+        <input name="searchbar" placeholder="Search..." type="text" value="" id="searchbar">
         <button id="searchbutton" type="submit">
             <div style="-webkit-transform: rotate(45deg);
                -moz-transform: rotate(45deg);
@@ -25,7 +25,7 @@
     </div>
     <a th:each="flight: ${flights}" th:href="@{'/flight/'+${flight.getId()}}">
         <div class="flight">
-            <div class="img"></div>
+            <div class="img" th:style="'background:url('+@{${flight.getImagePath()}}+'); background-size:200% 100%;'"></div>
             <div class="content"><h3 th:text="${flight.getFlights.get('to')+'-'+flight.getFlights.get('hotel')}"></h3>
                 <div class="stars" th:each="i : ${#numbers.sequence( 1, flight.getRating())}"></div>
                 <br>

@@ -4,11 +4,13 @@
     <title>Airport</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <link href="/css/mystyle.css" rel="stylesheet">
+    <script th:src="@{css/js/main.js}" type="text/javascript"></script>
+
 </head>
-<body id="body">
+<body id="body" onscroll="ScrollFade(0.003)">
 <header id="header">
     <form autocomplete="off" method="POST" th:action="@{/search.html}">
-        <input name="searchbar" placeholder="Search..." type="text" value="">
+        <input name="searchbar" placeholder="Search..." type="text" value="" id="searchbar">
         <button id="searchbutton" type="submit">
             <div style="-webkit-transform: rotate(45deg);
                -moz-transform: rotate(45deg);
@@ -22,7 +24,6 @@
 <main id="scroll">
     <div>Travel &<br>&nbsp&nbsp&nbspDiscover</div>
 </main>
-<script th:src="@{css/js/main.js}" type="text/javascript"></script>
 <div id="wrapper">
     <a href="/search.html">
         <div class="container">
