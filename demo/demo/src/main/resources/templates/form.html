@@ -4,49 +4,84 @@
     <meta charset="UTF-8">
     <title th:text="${flight.getFlights().get('to')}"></title>
     <link href="/css/mystyle.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body{
+            font-family:"Noto Sans CJK JP";
+        }
+        .box{
+            width:18vw;
+            margin:1vw;
+            clear:both;
+            padding:5px;
+        }
+        #selects{
+            width:60%;
+            height:50%;
+            margin-top:5vh;
+        }
+    </style>
 
 </head>
 <body id="body">
 <main id="scroll"
       th:style="'background:url('+@{${flight.getImagePath()}}+'); background-size:100% 300%;height:40vh;background-position:120% 30%'">
-
 </main>
+<form autocomplete="off" method="POST" th:action="@{'/flight/'+${flight.getId()}+'/book'}">
 <h2 class="transport">Form of transport:</h2>
 <div class="choices" style="width:60%;">
-    <input type="radio" name="choice" id="choice_1" value="1" checked>
+    <input type="radio" name="choice" id="choice_1" value="1" checked required>
     <label for="choice_1" class="choice" >Sample text</label>
 
-    <input type="radio" name="choice" id="choice_2" value="1">
+    <input type="radio" name="choice" id="choice_2" value="1" required>
     <label for="choice_2" class="choice">Sample text</label>
 </div>
 <div class="choices" style="width:60%;">
 
-<input type="radio" name="choice" id="choice_3" value="1">
+<input type="radio" name="choice" id="choice_3" value="1" required>
     <label for="choice_3" class="choice">Sample text</label>
 
-    <input type="radio" name="choice" id="choice_4" value="1">
+    <input type="radio" name="choice" id="choice_4" value="1" required>
     <label for="choice_4" class="choice" >Sample text</label>
 </div>
 <h2 class="transport" style="margin-bottom:4vh;,margin-top:0;">Information's:</h2>
 <div id="form">
-    <div class="divide"></div>
+    <div class="divide" id="a">
+        <label for="myDatepicker" class="choice" style="color:#0059a9;font-size:1.5vw;margin:0;padding-left:0;;width:45%;cursor:default;">Range of data</label>
+        <input type="text"  id="myDatepicker" value="" name="date" class="form-control form-control-sm" style="visibility:hidden;height:0vh;" required/>
+        <input type="text"  value="" name="days"  id="days" style="visibility:hidden;height:0vh;"/>
+
+    </div>
     <div class="divide" style="background-color:#349ded;">
         <div class="stars" th:each="i : ${#numbers.sequence( 1, flight.getRating())}" ></div>
         <p th:utext="'<h2>Offer '+'<br/>'+${flight.getFlights.get('to')+'-'+flight.getFlights.get('hotel')}+'</h2>'"></p>
         <div class="input">
             <label for="name">Name:</label><br>
-            <input type="text" name="name" id="name" value="">
+            <input type="text" name="name" id="name" value="" required>
         </div>
         <div class="input">
         <label for="surName">Surname:</label><br>
-        <input type="text" name="surName" id="surName" value="">
+        <input type="text" name="surName" id="surName" value="" required>
             </div>
         <div class="input" style="width:60%">
-            <label for="Email">Email:</label><br>
-            <input type="text" name="Email" id="Email" value="">
+            <label for="email">Email:</label><br>
+            <input type="text" name="email" id="email" value="" required>
+        </div>
+        <div id="result" style="clear:both;">
+            <div id="cost" style="text-align:left;">
+                Final cost: -
+            </div>
+            <div id="formSubmit">
+                <button th:attr="onclick=|getFinalResult('${flight.getPrice()}')|">Submit</button>
+            </div>
         </div>
     </div>
 </div>
+</form>
+<link rel="stylesheet" type="text/css" href="/css/lightpick.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/lightpick@latest/lightpick.js"></script>
+<script th:src="@{/css/js/form.js}" type="text/javascript" th:attr="onload=|getPrice('${flight.getPrice()}')|"></script>
 </body>
 </html>

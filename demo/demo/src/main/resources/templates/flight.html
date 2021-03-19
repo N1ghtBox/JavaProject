@@ -9,7 +9,7 @@
 <body th:attr="onload=|getFlightId('${flight.getId()}','${size}')|">
 <header id="header">
     <form autocomplete="off" method="POST" th:action="@{/search.html}">
-        <input name="searchbar" placeholder="Search..." type="text" value="">
+        <input name="searchbar" id="searchbar" placeholder="Search..." type="text" value="">
         <button id="searchbutton" type="submit">
             <div style="-webkit-transform: rotate(45deg);
                -moz-transform: rotate(45deg);
@@ -33,7 +33,7 @@
         <button onclick="change(1)">&#62</button>
     </div>
     <div id="price">
-        a
+
     </div>
 </div>
 <div id="getPrice">

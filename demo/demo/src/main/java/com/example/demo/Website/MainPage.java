@@ -60,13 +60,6 @@ public class MainPage {
         return "flight.html";
     }
 
-    @PostMapping(path = "/flight/{id}", produces = {"application/json"})
-    public String flight(@PathVariable("id") Long id, @RequestParam Map<String, String> params, Model model) throws JSONException {
-        JSONObject json = new JSONObject(params);
-        User user = new User(json.getString("name"), json.getString("email"));
-        userController.registerNewUser(user, id);
-        return flight(id, model);
-    }
     @GetMapping("/flight/{id}/book")
     public String bookFlight(@PathVariable("id") Long id,Model model){
         Flight chosenFlight = flightController.getById(id);
@@ -78,5 +71,13 @@ public class MainPage {
         return "brazil.html";
     }
 
+    @PostMapping(path = "/flight/{id}/book", produces = {"application/json"})
+    public String flight(@PathVariable("id") Long id, @RequestParam Map<String, String> params, Model model) throws JSONException {
+        JSONObject json = new JSONObject(params);
+        System.out.println(json);
+        User user = new User(json.getString("name")+" "+json.getString("surName"), json.getString("email"));
+//        userController.registerNewUser(user, id);
+        return bookFlight(id,model);
+    }
 }
 
