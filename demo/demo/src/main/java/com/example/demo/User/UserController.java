@@ -1,6 +1,8 @@
 package com.example.demo.User;
 
 import com.example.demo.Service.UserService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +25,8 @@ public class UserController {
         return userService.getUsers();
     }
 
-    public void registerNewUser(User user, Long id) {
-        userService.addNewUser(user, id);
+    public void registerNewUser(JSONObject json, Long id) throws JSONException {
+        userService.addNewUser(json, id);
     }
 
 }

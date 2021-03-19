@@ -75,8 +75,7 @@ public class MainPage {
     public String flight(@PathVariable("id") Long id, @RequestParam Map<String, String> params, Model model) throws JSONException {
         JSONObject json = new JSONObject(params);
         System.out.println(json);
-        User user = new User(json.getString("name")+" "+json.getString("surName"), json.getString("email"));
-//        userController.registerNewUser(user, id);
+        userController.registerNewUser(json, id);
         return bookFlight(id,model);
     }
 }

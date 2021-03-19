@@ -30,19 +30,19 @@
 <form autocomplete="off" method="POST" th:action="@{'/flight/'+${flight.getId()}+'/book'}">
 <h2 class="transport">Form of transport:</h2>
 <div class="choices" style="width:60%;">
-    <input type="radio" name="choice" id="choice_1" value="1" checked required>
-    <label for="choice_1" class="choice" >Sample text</label>
+    <input type="radio" name="choice" id="choice_1" value="0" checked required>
+    <label for="choice_1" class="choice" onclick="getFinalResult()">My own transport</label>
 
-    <input type="radio" name="choice" id="choice_2" value="1" required>
-    <label for="choice_2" class="choice">Sample text</label>
+    <input type="radio" name="choice" id="choice_2" value="50" required>
+    <label for="choice_2" class="choice" onclick="getFinalResult()">Bus</label>
 </div>
 <div class="choices" style="width:60%;">
 
-<input type="radio" name="choice" id="choice_3" value="1" required>
-    <label for="choice_3" class="choice">Sample text</label>
+<input type="radio" name="choice" id="choice_3" value="100" required>
+    <label for="choice_3" class="choice" onclick="getFinalResult()">Flight</label>
 
-    <input type="radio" name="choice" id="choice_4" value="1" required>
-    <label for="choice_4" class="choice" >Sample text</label>
+    <input type="radio" name="choice" id="choice_4" value="200" required>
+    <label for="choice_4" class="choice" onclick="getFinalResult()">Flight class.2</label>
 </div>
 <h2 class="transport" style="margin-bottom:4vh;,margin-top:0;">Information's:</h2>
 <div id="form">

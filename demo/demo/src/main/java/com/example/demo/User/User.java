@@ -20,22 +20,18 @@ public class User {
     private Long id;
     private String name;
     private String email;
+    private int numberOfPeople;
+    private int numberOfDays;
     private Hashtable<String, Hashtable<String, String>> flightInfo = new Hashtable<>();
 
     public User() {
     }
 
-    public User(String name,
-                String email,
-                Hashtable<String, Hashtable<String, String>> flightInfo) {
+    public User(String name, String email, int numberOfPeople, int numberOfDays) {
         this.name = name;
         this.email = email;
-        this.flightInfo = flightInfo;
-    }
-
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
+        this.numberOfPeople = numberOfPeople;
+        this.numberOfDays = numberOfDays;
     }
 
     public User(Long id, String name, String email, Hashtable<String, Hashtable<String, String>> flightInfo) {
@@ -43,6 +39,22 @@ public class User {
         this.name = name;
         this.email = email;
         this.flightInfo = flightInfo;
+    }
+
+    public int getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public void setNumberOfDays(int numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
+
+    public int getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
     }
 
     public Long getId() {
