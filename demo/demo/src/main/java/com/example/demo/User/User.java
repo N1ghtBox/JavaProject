@@ -23,6 +23,7 @@ public class User {
     private int numberOfPeople;
     private int numberOfDays;
     private Hashtable<String, Hashtable<String, String>> flightInfo = new Hashtable<>();
+    private boolean isEnabled = false;
 
     public User() {
     }
@@ -39,6 +40,14 @@ public class User {
         this.name = name;
         this.email = email;
         this.flightInfo = flightInfo;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 
     public int getNumberOfDays() {

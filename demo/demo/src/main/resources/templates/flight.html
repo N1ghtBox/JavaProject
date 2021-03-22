@@ -60,5 +60,8 @@
         <button th:attr="onclick=|getPrice('${flight.getPrice()}')|">Result</button>
     </div>
 </div>
+<div id="description" th:text="${flight.getDescription()}">
+
+</div>
 </body>
 </html>

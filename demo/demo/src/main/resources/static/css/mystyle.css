@@ -338,3 +338,12 @@ align-items:flex-end;
     width:50%;
 
 }
+#description{
+    width:70%;
+    height:100vh;
+    margin:5vh;
+    padding:3vh;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:white;
+}

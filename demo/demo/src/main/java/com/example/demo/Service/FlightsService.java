@@ -3,6 +3,7 @@ package com.example.demo.Service;
 import com.example.demo.Flights.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -29,12 +30,13 @@ public class FlightsService {
         flightsRepository.save(flight);
     }
 
-    public List<Flight> getAllFlightsByCity(String city) {
+    public List<Flight> getAllFlightsByCity(String place) {
         List<Flight> allFlights = getAllFlights();
-        if (city.equals("")) {
+        if (place.equals("")) {
             return allFlights;
         }
-        Predicate<Flight> containsCity = flight -> flight.getFlights().contains(city);
+
+        Predicate<Flight> containsCity = flight -> flight.getFlights().containsValue(StringUtils.capitalize(place));
         List<Flight> filteredFlights = allFlights.stream().filter(containsCity)
                 .collect(Collectors.toList());
         return filteredFlights;

@@ -2,41 +2,29 @@ package com.example.demo.Email;
 
 import com.example.demo.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
-@Component
-public class EmailSender extends Thread {
+@Service
+public class EmailSender {
 
     private final JavaMailSender javaMailSender;
-    private User user;
 
     @Autowired
     public EmailSender(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    private void sendEmail() {
+    @Async
+    public void sendEmail(User user, String title, String emailMessage) throws MailException, InterruptedException {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
-        message.setSubject("Bilety lotniczne");
-        String contentOfMessage = String.format("Witaj %s\nUdało ci się zarejestrować bilety na dzień %s\n" +
-                        "Lot będzie startował z %s i będzie lądował w %s\nPozdrawiamy\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\n" +
-                        "Po więcej informacji prosimy o kontakt: witczak.dawid.2gp@gmail.com :)",
-                user.getName(), user.getFlightInfo().get("startDate"), user.getFlightInfo().get("flights"), "a");
-        message.setText(contentOfMessage);
-
+        message.setSubject(title);
+        message.setText(emailMessage);
         javaMailSender.send(message);
 
-    }
-
-    public void run() {
-        sendEmail();
-        System.out.println("Email sent successfully...");
     }
 }

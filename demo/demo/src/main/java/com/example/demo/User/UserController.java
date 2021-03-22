@@ -1,8 +1,7 @@
 package com.example.demo.User;
 
 import com.example.demo.Service.UserService;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.demo.Website.Security.ConfirmationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,23 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping(path = "user")
+@RequestMapping
 @RestController
 public class UserController {
     private final UserService userService;
-
+    private final ConfirmationTokenRepository confirmationTokenRepository;
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService,
+                          ConfirmationTokenRepository confirmationTokenRepository) {
         this.userService = userService;
+        this.confirmationTokenRepository = confirmationTokenRepository;
     }
 
     @GetMapping("/user")
     public List<User> getUsers() {
         return userService.getUsers();
-    }
-
-    public void registerNewUser(JSONObject json, Long id) throws JSONException {
-        userService.addNewUser(json, id);
     }
 
 }
