@@ -7,10 +7,13 @@ import com.example.demo.Website.Security.ConfirmationToken;
 import com.example.demo.Website.Security.ConfirmationTokenRepository;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Service;
 
+import javax.mail.SendFailedException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +53,11 @@ public class UserService {
         if (newUser.isPresent()) {
             return "/error";
         }
+        ConfirmationToken confirmationToken = new ConfirmationToken(user);
+        Boolean successEmail = emailSender.sendEmail(user,"Confirm E-mail","To confirm your account, please click here:\n http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
+        if(successEmail){
+            return "/flight/"+id+"/book";
+        }
         Flight chosenFlight = flightsRepository.getFlightById(id);
         String[] date = json.get("date").toString().split("to");
         Hashtable <String,String> daterange = new Hashtable<String,String>();
@@ -59,14 +67,13 @@ public class UserService {
         map.put("date",daterange);
         map.put("flights", chosenFlight.getFlights());
         user.setFlightInfo(map);
-        ConfirmationToken confirmationToken = new ConfirmationToken(user);
         userRepository.save(user);
         tokenRepository.save(confirmationToken);
-        emailSender.sendEmail(user,"Confirm E-mail","To confirm your account, please click here:\n http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
         return "/confirm";
     }
 
     public void enableNewUser(User user,Long id) throws InterruptedException {
+        user.setEnabled(true);
         userRepository.save(user);
         tokenRepository.deleteById(id);
         emailSender.sendEmail(user,"Flight ticket","a");

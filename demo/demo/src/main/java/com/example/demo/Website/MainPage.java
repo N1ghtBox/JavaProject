@@ -83,8 +83,13 @@ public class MainPage {
                                RedirectAttributes redir) throws JSONException, InterruptedException {
 
         JSONObject json = new JSONObject(params);
-        RedirectView redirectView = new RedirectView(userService.addNewUser(json, id));
-        redir.addFlashAttribute("message","a");
+        String path = userService.addNewUser(json, id);
+        RedirectView redirectView = new RedirectView(path);
+        if(path.equals("/error")){
+            redir.addFlashAttribute("message","a");
+        }else if(path.equals("/flight/"+id+"/book")){
+            redir.addFlashAttribute("error","true");
+        }
         return redirectView;
     }
 
@@ -103,7 +108,7 @@ public class MainPage {
         return modelAndView;
     }
     @GetMapping("/confirm")
-    public String end(Model model){
+    public String end(){
         return "confirm.html";
     }
     @GetMapping("/error")

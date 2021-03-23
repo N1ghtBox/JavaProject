@@ -67,6 +67,9 @@
             <label for="email">Email:</label><br>
             <input type="text" name="email" id="email" value="" required>
         </div>
+        <div id="error" th:if="${error=='true'}">
+                Invalid email!
+        </div>
         <div id="result" style="clear:both;">
             <div id="cost" style="text-align:left;">
                 Final cost: -
