@@ -10,7 +10,7 @@
 <body id="body" onscroll="ScrollFade(0.003)">
 <header id="header">
     <form autocomplete="off" method="POST" th:action="@{/search.html}">
-        <input name="searchbar" placeholder="Search..." type="text" value="" id="searchbar">
+        <input id="searchbar" name="searchbar" placeholder="Search..." type="text" value="">
         <button id="searchbutton" type="submit">
             <div style="-webkit-transform: rotate(45deg);
                -moz-transform: rotate(45deg);
@@ -37,10 +37,12 @@
             <h4>Special Offer</h4>
         </div>
     </a>
-    <div class="container">
-        <div style="background: url('./css/images/customer.jpg') no-repeat;background-size: 85% 85%;"></div>
-        <h4>For customers</h4>
-    </div>
+    <a href="/admin">
+        <div class="container">
+            <div style="background: url('./css/images/customer.jpg') no-repeat;background-size: 85% 85%;"></div>
+            <h4>For Admin</h4>
+        </div>
+    </a>
     <div class="container">
         <div style="background: url('./css/images/icon.jpg') no-repeat;background-size: 85% 85%;"></div>
         <h4>Contact us</h4>

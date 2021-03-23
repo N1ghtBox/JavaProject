@@ -46,4 +46,7 @@ public class FlightsService {
         return flightsRepository.getFlightById(id);
     }
 
+    public void deleteFlight(Long id){
+        flightsRepository.delete(getFlightById(id));
+    }
 }

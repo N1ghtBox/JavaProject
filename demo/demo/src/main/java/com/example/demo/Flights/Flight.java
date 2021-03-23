@@ -74,12 +74,12 @@ public class Flight {
         this.id = id;
     }
 
+    @Transient
     public String getImagePath() {
-
-        String path = "/css/images/"+getId()+"/";
-        File directory = new File("src/main/resources/static"+path);
+        String path = "/css/images/" + getId() + "/";
+        File directory = new File("src/main/resources/static" + path);
         String[] array = directory.list();
-        if(array==null) return "/css/images/img.jpg";
-        return path+array[0];
+        if (array == null) return "/css/images/img.jpg";
+        return path + array[0];
     }
 }

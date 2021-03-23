@@ -362,5 +362,44 @@ text-align:left;
     border-radius:10px;
     border:1.5px dashed #e82300;
     margin:5%;
+}
+.elements{
+    width:90%;
+    display:flex;
+    align-items:center;
+    height:8vh;
+    margin:2.5vh;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow:0px 0px 19px -1px rgba(0,0,0,0.27);
+    background-color:white;
+}
+.elements div{
+    height:100%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    border-right: 1px dashed #b0b0b0;
+}
+.Id, .Price, .Rating, .Menu{
+    width:10%;
+}
+.City, .Hotel{
+    width:20%;
+}
+.desc{
+    width:25%;
+}
+.Menu img{
+    height:100%;
+}
+.Menu button{
+    box-shadow:none;
+    background-color:white;
+    height:6vh;
+
+}
+.Menu img:hover{
+    filter:invert(50%);
 
 }

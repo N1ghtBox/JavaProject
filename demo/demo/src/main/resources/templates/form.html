@@ -20,6 +20,8 @@
             height:50%;
             margin-top:5vh;
         }
+
+
     </style>
 
 </head>
@@ -28,63 +30,67 @@
       th:style="'background:url('+@{${flight.getImagePath()}}+'); background-size:100% 300%;height:40vh;background-position:120% 30%'">
 </main>
 <form autocomplete="off" method="POST" th:action="@{'/flight/'+${flight.getId()}+'/book'}">
-<h2 class="transport">Form of transport:</h2>
-<div class="choices" style="width:60%;">
-    <input type="radio" name="choice" id="choice_1" value="0" checked required>
-    <label for="choice_1" class="choice" onclick="getFinalResult()">My own transport</label>
+    <h2 class="transport">Form of transport:</h2>
+    <div class="choices" style="width:60%;">
+        <input checked id="choice_1" name="choice" required type="radio" value="0">
+        <label class="choice" for="choice_1" onclick="getFinalResult()">My own transport</label>
 
-    <input type="radio" name="choice" id="choice_2" value="50" required>
-    <label for="choice_2" class="choice" onclick="getFinalResult()">Bus<br>+50</label>
-</div>
-<div class="choices" style="width:60%;">
-
-<input type="radio" name="choice" id="choice_3" value="100" required>
-    <label for="choice_3" class="choice" onclick="getFinalResult()">Flight<br>+100</label>
-
-    <input type="radio" name="choice" id="choice_4" value="200" required>
-    <label for="choice_4" class="choice" onclick="getFinalResult()">Flight class.2<br>+200</label>
-</div>
-<h2 class="transport" style="margin-bottom:4vh;,margin-top:0;">Information's:</h2>
-<div id="form">
-    <div class="divide" id="a">
-        <label for="myDatepicker" class="choice" style="color:#0059a9;font-size:1.5vw;margin:0;padding-left:0;;width:45%;cursor:default;">Range of data</label>
-        <input type="text"  id="myDatepicker" value="" name="date" class="form-control form-control-sm" style="visibility:hidden;height:0vh;" required/>
-        <input type="text"  value="" name="days"  id="days" style="visibility:hidden;height:0vh;"/>
-
+        <input id="choice_2" name="choice" required type="radio" value="50">
+        <label class="choice" for="choice_2" onclick="getFinalResult()">Bus<br>+50</label>
     </div>
-    <div class="divide" style="background-color:#349ded;">
-        <div class="stars" th:each="i : ${#numbers.sequence( 1, flight.getRating())}" ></div>
-        <p th:utext="'<h2>Offer '+'<br/>'+${flight.getFlights.get('to')+'-'+flight.getFlights.get('hotel')}+'</h2>'"></p>
-        <div class="input">
-            <label for="name">Name:</label><br>
-            <input type="text" name="name" id="name" value="" required>
+    <div class="choices" style="width:60%;">
+
+        <input id="choice_3" name="choice" required type="radio" value="100">
+        <label class="choice" for="choice_3" onclick="getFinalResult()">Flight<br>+100</label>
+
+        <input id="choice_4" name="choice" required type="radio" value="200">
+        <label class="choice" for="choice_4" onclick="getFinalResult()">Flight class.2<br>+200</label>
+    </div>
+    <h2 class="transport" style="margin-bottom:4vh;,margin-top:0;">Information's:</h2>
+    <div id="form">
+        <div class="divide" id="a">
+            <label class="choice" for="myDatepicker"
+                   style="color:#0059a9;font-size:1.5vw;margin:0;padding-left:0;;width:45%;cursor:default;">Range of
+                data</label>
+            <input class="form-control form-control-sm" id="myDatepicker" name="date" required
+                   style="visibility:hidden;height:0vh;"
+                   type="text" value=""/>
+            <input id="days" name="days" style="visibility:hidden;height:0vh;" type="text" value=""/>
+
         </div>
-        <div class="input">
-        <label for="surName">Surname:</label><br>
-        <input type="text" name="surName" id="surName" value="" required>
+        <div class="divide" style="background-color:#349ded;">
+            <div class="stars" th:each="i : ${#numbers.sequence( 1, flight.getRating())}"></div>
+            <p th:utext="'<h2>Offer '+'<br/>'+${flight.getFlights.get('city')+'-'+flight.getFlights.get('hotel')}+'</h2>'"></p>
+            <div class="input">
+                <label for="name">Name:</label><br>
+                <input id="name" name="name" required type="text" value="">
             </div>
-        <div class="input" style="width:60%">
-            <label for="email">Email:</label><br>
-            <input type="text" name="email" id="email" value="" required>
-        </div>
-        <div id="error" th:if="${error=='true'}">
+            <div class="input">
+                <label for="surName">Surname:</label><br>
+                <input id="surName" name="surName" required type="text" value="">
+            </div>
+            <div class="input" style="width:60%">
+                <label for="email">Email:</label><br>
+                <input id="email" name="email" required type="text" value="">
+            </div>
+            <div id="error" th:if="${error=='true'}">
                 Invalid email!
-        </div>
-        <div id="result" style="clear:both;">
-            <div id="cost" style="text-align:left;">
-                Final cost: -
             </div>
-            <div id="formSubmit">
-                <button th:attr="onclick=|getFinalResult('${flight.getPrice()}')|">Submit</button>
+            <div id="result" style="clear:both;">
+                <div id="cost" style="text-align:left;">
+                    Final cost: -
+                </div>
+                <div id="formSubmit">
+                    <button th:attr="onclick=|getFinalResult('${flight.getPrice()}')|">Submit</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </form>
-<link rel="stylesheet" type="text/css" href="/css/lightpick.css">
+<link href="/css/lightpick.css" rel="stylesheet" type="text/css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/lightpick@latest/lightpick.js"></script>
-<script th:src="@{/css/js/form.js}" type="text/javascript" th:attr="onload=|getPrice('${flight.getPrice()}')|"></script>
+<script th:attr="onload=|getPrice('${flight.getPrice()}')|" th:src="@{/css/js/form.js}" type="text/javascript"></script>
 </body>
 </html>

@@ -14,6 +14,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final ConfirmationTokenRepository confirmationTokenRepository;
+
     @Autowired
     public UserController(UserService userService,
                           ConfirmationTokenRepository confirmationTokenRepository) {

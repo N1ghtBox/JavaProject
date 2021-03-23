@@ -7,13 +7,10 @@ import com.example.demo.Website.Security.ConfirmationToken;
 import com.example.demo.Website.Security.ConfirmationTokenRepository;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Service;
 
-import javax.mail.SendFailedException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +18,12 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    @Autowired
-    private AutowireCapableBeanFactory autowireCapableBeanFactory;
     private final UserRepository userRepository;
     private final FlightsRepository flightsRepository;
     private final EmailSender emailSender;
     private final ConfirmationTokenRepository tokenRepository;
+    @Autowired
+    private AutowireCapableBeanFactory autowireCapableBeanFactory;
 
     @Autowired
     public UserService(UserRepository userRepository,
@@ -43,10 +40,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserByEmail(String email){return userRepository.findByEmailIgnoreCase(email); }
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmailIgnoreCase(email);
+    }
 
     public String addNewUser(JSONObject json, Long id) throws JSONException, InterruptedException {
-        User user = new User(json.getString("name")+" "+json.getString("surName"),
+        User user = new User(json.getString("name") + " " + json.getString("surName"),
                 json.getString("email"), json.getInt("people"), json.getInt("days"));
         Optional<User> newUser = userRepository
                 .findUserByEmail(user.getEmail());
@@ -54,17 +53,17 @@ public class UserService {
             return "/error";
         }
         ConfirmationToken confirmationToken = new ConfirmationToken(user);
-        Boolean successEmail = emailSender.sendEmail(user,"Confirm E-mail","To confirm your account, please click here:\n http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
-        if(successEmail){
-            return "/flight/"+id+"/book";
+        Boolean successEmail = emailSender.sendEmail(user, "Confirm E-mail", "To confirm your account, please click here:\n http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
+        if (successEmail) {
+            return "/flight/" + id + "/book";
         }
         Flight chosenFlight = flightsRepository.getFlightById(id);
         String[] date = json.get("date").toString().split("to");
-        Hashtable <String,String> daterange = new Hashtable<String,String>();
-        daterange.put("start",date[0]);
-        daterange.put("end",date[1]);
+        Hashtable<String, String> daterange = new Hashtable<String, String>();
+        daterange.put("start", date[0]);
+        daterange.put("end", date[1]);
         Hashtable<String, Hashtable<String, String>> map = new Hashtable<>();
-        map.put("date",daterange);
+        map.put("date", daterange);
         map.put("flights", chosenFlight.getFlights());
         user.setFlightInfo(map);
         userRepository.save(user);
@@ -72,10 +71,10 @@ public class UserService {
         return "/confirm";
     }
 
-    public void enableNewUser(User user,Long id) throws InterruptedException {
+    public void enableNewUser(User user, Long id) throws InterruptedException {
         user.setEnabled(true);
         userRepository.save(user);
         tokenRepository.deleteById(id);
-        emailSender.sendEmail(user,"Flight ticket","a");
+        emailSender.sendEmail(user, "Flight ticket", "a");
     }
 }

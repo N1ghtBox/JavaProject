@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Airport</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link href="/css/mystyle.css" rel="stylesheet">
+    <script th:src="@{css/js/main.js}" type="text/javascript"></script>
+</head>
+<body>
+    <div class="elements">
+        <div class="Id">
+            ID
+        </div>
+        <div class="City">
+            City
+        </div>
+        <div class="Hotel">
+            Hotel
+        </div>
+        <div class="desc">
+            Desc
+        </div>
+        <div class="Price">
+            Price
+        </div>
+        <div class="Rating">
+            Rating
+        </div>
+        <div class="Menu">
+
+        </div>
+    </div>
+
+    <div class="elements" th:each="flight: ${flights}">
+        <div class="Id" th:text="${flight.getId()}">
+        </div>
+        <div class="City" th:text="${flight.getFlights().get('city')}">
+        </div>
+        <div class="Hotel" th:text="${flight.getFlights().get('hotel')}">
+        </div>
+        <div class="desc" th:text="${flight.getDescription()}">
+        </div>
+        <div class="Price" th:text="${flight.getPrice()}">
+        </div>
+        <div class="Rating" th:text="${flight.getRating()}">
+        </div>
+        <div class="Menu">
+            <form th:action="@{'/admin/delete/'+${flight.getId()}}" method="GET">
+                <button type="submit">
+                    <img th:src="@{css/images/recycle.png}">
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
