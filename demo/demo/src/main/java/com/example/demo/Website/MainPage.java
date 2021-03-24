@@ -179,6 +179,25 @@ public class MainPage {
         return "loginAdmin.html";
     }
 
+    @GetMapping("/admin/edit/{id}")
+    public String editPage(@PathVariable("id") Long id,Model model){
+        Flight flight = flightsService.getFlightById(id);
+        model.addAttribute("flight",flight);
+        return "edit.html";
+    }
+    @PostMapping("/admin/edit/{id}")
+    public RedirectView editFlight(@PathVariable("id") Long id,@RequestParam Map<String,String> params, Model model){
+        Flight flight = flightsService.getFlightById(id);
+        flight.setDescription(params.get("desc"));
+        flight.setPrice(Integer.parseInt(params.get("price")));
+        flight.setRating(Integer.parseInt(params.get("rating")));
+        Hashtable<String, String> a = new Hashtable<String, String>();
+        a.put("city",params.get("city"));
+        a.put("hotel",params.get("hotel"));
+        flight.setFlights(a);
+        flightsService.editFlight(flight);
+        return new RedirectView("/admin");
 
+    }
 }
 

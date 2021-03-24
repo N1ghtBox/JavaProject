@@ -49,4 +49,8 @@ public class FlightsService {
     public void deleteFlight(Long id) {
         flightsRepository.delete(getFlightById(id));
     }
+
+    public void editFlight(Flight flight){
+        flightsRepository.save(flight);
+    }
 }

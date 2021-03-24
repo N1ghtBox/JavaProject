@@ -47,6 +47,11 @@
     <div class="Rating" th:text="${flight.getRating()}">
     </div>
     <div class="Menu">
+        <form method="GET" th:action="@{'/admin/edit/'+${flight.getId()}}">
+            <button type="submit">
+                <img th:src="@{css/images/edit.png}">
+            </button>
+        </form>
         <form method="GET" th:action="@{'/admin/delete/'+${flight.getId()}}">
             <button type="submit">
                 <img th:src="@{css/images/recycle.png}">

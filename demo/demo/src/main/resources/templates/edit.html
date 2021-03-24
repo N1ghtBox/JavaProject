@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Airport</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link href="/css/mystyle.css" rel="stylesheet">
+</head>
+<body>
+    <form method="POST" th:action="@{'/admin/edit/'+${flight.getId()}}">
+    <input th:value="${flight.getFlights().get('city')}" name="city">
+        <input th:value="${flight.getFlights().get('hotel')}" name="hotel">
+        <input th:value="${flight.getPrice()}" name="price">
+        <input th:value="${flight.getRating()}" name="rating">
+        <input th:value="${flight.getDescription()}" name="desc">
+        <button type="submit">Edit</button>
+    </form>
+</body>
+</html>
