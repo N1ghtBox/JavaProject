@@ -11,7 +11,10 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,8 +27,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Hashtable;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -110,55 +113,53 @@ public class MainPage {
             user.setEnabled(true);
             userService.enableNewUser(user, token.getTokenId());
             modelAndView.setViewName("confirm.html");
+            modelAndView.addObject("Message", "Confirmed your account!");
         } else {
-            modelAndView.addObject("errorMessage", "Invalid or broken token");
-            modelAndView.setViewName("error.html");
+            modelAndView.setViewName("templates/error.html");
         }
         return modelAndView;
     }
 
     @GetMapping("/confirm")
-    public String end() {
+    public String end(Model model) {
+        model.addAttribute("Message","Please confirm your e-mail");
         return "confirm.html";
     }
 
-    @GetMapping("/error")
-    public String error(@RequestParam("message") String a) {
-        return "error.html";
 
-    }
     @GetMapping("/admin")
     public String admin(Model model) {
-        model.addAttribute("flights",flightsService.getAllFlights());
+        model.addAttribute("flights", flightsService.getAllFlights());
         return "admin.html";
     }
+
     @PostMapping("/admin/add")
-    public RedirectView add(@RequestParam Map<String,String> params,
+    public RedirectView add(@RequestParam Map<String, String> params,
                             @RequestParam("files") List<MultipartFile> files) throws JSONException {
         JSONObject json = new JSONObject(params);
 
         json.remove("files");
-        Hashtable<String,String> place = new Hashtable<String,String>();
-        place.put("city",json.getString("city"));
-        place.put("hotel",json.getString("hotel"));
+        Hashtable<String, String> place = new Hashtable<String, String>();
+        place.put("city", json.getString("City"));
+        place.put("hotel", json.getString("Hotel"));
         Flight flight = new Flight(
                 place,
                 json.getString("desc"),
-                json.getInt("price"),
-                json.getInt("rating")
-                );
+                json.getInt("Price"),
+                json.getInt("Rating")
+        );
 
         flightsService.addNewFlight(flight);
-        String path ="src/main/resources/static/css/images/"+flight.getId();
+        String path = "src/main/resources/static/css/images/" + flight.getId();
         File theDir = new File(path);
-        if (!theDir.exists()){
+        if (!theDir.exists()) {
             theDir.mkdirs();
         }
         files.forEach(file -> {
             byte[] bytes = new byte[0];
             try {
                 bytes = file.getBytes();
-                Path pathOfFile = Paths.get(path +"/"+ file.getOriginalFilename());
+                Path pathOfFile = Paths.get(path + "/" + file.getOriginalFilename());
                 Files.write(pathOfFile, bytes);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -166,10 +167,18 @@ public class MainPage {
         });
         return new RedirectView("/admin");
     }
+
     @GetMapping("/admin/delete/{id}")
-    public RedirectView deleteFlight(@PathVariable("id") Long id){
+    public RedirectView deleteFlight(@PathVariable("id") Long id) {
         flightsService.deleteFlight(id);
         return new RedirectView("/admin");
     }
+
+    @GetMapping("/loginAdmin")
+    public String loginAdmin() {
+        return "loginAdmin.html";
+    }
+
+
 }
 

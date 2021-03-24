@@ -350,6 +350,7 @@ text-align:left;
     margin-left:auto;
     margin-right:auto;
     background-color:white;
+    position:relative;
 }
 #error{
     width:93%;
@@ -381,6 +382,10 @@ text-align:left;
     align-items:center;
     border-right: 1px dashed #b0b0b0;
 }
+.elements input{
+    height:40%;
+    width:80%;
+}
 .Id, .Price, .Rating, .Menu{
     width:10%;
 }
@@ -392,6 +397,7 @@ text-align:left;
 }
 .Menu img{
     height:100%;
+
 }
 .Menu button{
     box-shadow:none;
@@ -403,3 +409,17 @@ text-align:left;
     filter:invert(50%);
 
 }
+#plus:hover{filter:invert(100%);}
+#book{
+    position: absolute;
+    right:5%;
+    bottom:5%;
+    width:10vw;
+    height:5vh;
+    border-radius:10px;
+      background-color: #49a7ef;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+   }
